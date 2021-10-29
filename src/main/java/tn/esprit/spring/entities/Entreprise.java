@@ -35,10 +35,6 @@ public class Entreprise implements Serializable{
 			fetch=FetchType.EAGER)
 	private List<Departement> departements = new ArrayList<>();
 
-	public Entreprise() {
-		super();
-	}
-
 	public Entreprise(String name, String raisonSocial) {
 		this.name = name;
 		this.raisonSocial = raisonSocial;
@@ -80,6 +76,13 @@ public class Entreprise implements Serializable{
 	public void addDepartement(Departement departement){
 		departement.setEntreprise(this);
 		this.departements.add(departement);
+	}
+
+	public Entreprise(int id, String name, String raisonSocial) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.raisonSocial = raisonSocial;
 	}
 
 

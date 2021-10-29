@@ -2,7 +2,6 @@ package tn.esprit.spring.services;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,15 +19,10 @@ public class UserServiceImpl implements IUserService {
 
 	private static final Logger l = LogManager.getLogger(UserServiceImpl.class);
 
-
-
-	
-	
 	@Override
 	public List<User> retrieveAllUsers() { 
 		List<User> users = null; 
-		try {
-	
+		try {	
 			l.info("In retrieveAllUsers() : ");
 			users = (List<User>) userRepository.findAll();  
 			for (User user : users) {
@@ -38,7 +32,6 @@ public class UserServiceImpl implements IUserService {
 		}catch (Exception e) {
 			l.error("Error in retrieveAllUsers() : " + e);
 		}
-
 		return users;
 	}
 
@@ -60,10 +53,10 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User retrieveUser(String id) {
-		l.info("in  retrieveUser id = " + id);
-		//User u =  userRepository.findById(Long.parseLong(id)).orElse(null);
+		l.info("in  retrieveUser id = " + id);	
 		//int i = 1/0; 
-		User u =  userRepository.findById(Long.parseLong(id)).get(); 
+	//	User u =  userRepository.findById(Long.parseLong(id)).get(); 
+		User u =  userRepository.findById(Long.parseLong(id)).orElse(null);
 		l.info("user returned : " + u);
 		return u; 
 	}

@@ -19,6 +19,8 @@ public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
+	public static User userUpdated;
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;   
@@ -54,6 +56,10 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
+
+	public User(int i, String string, String string2, Date d, Role chefDepartement) {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public String toString() {
