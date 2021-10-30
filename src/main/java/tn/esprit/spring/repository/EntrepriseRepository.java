@@ -16,4 +16,3 @@ public interface EntrepriseRepository extends CrudRepository<Entreprise, Integer
 	@Query("SELECT n FROM Entreprise n WHERE n.name=:name")
 	public List<Entreprise> findByName(@Param("name") String name);
 }
-

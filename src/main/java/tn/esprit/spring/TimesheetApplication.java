@@ -24,7 +24,6 @@ public class TimesheetApplication {
 		return rwFilter;
 	}
 
-
 	@Bean
 	public FilterRegistrationBean loginFilter() {
 		FilterRegistrationBean registration = new FilterRegistrationBean();

@@ -60,7 +60,6 @@ public class DepartementServiceImplTest {
 		Assert.assertEquals(dep.getName(), depAdded.getName());
 		l.info(" Departement modifiée avec succès");
 		}
-
 	
 	@Test
 	public void testDeleteDep()  {

@@ -11,4 +11,3 @@ public interface IDepartementService {
 	void deleteDepartement(int id);
 
 }
-

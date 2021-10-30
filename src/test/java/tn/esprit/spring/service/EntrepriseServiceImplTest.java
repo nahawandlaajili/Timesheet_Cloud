@@ -11,14 +11,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.services.IEntrepriseService;
 
-import static org.junit.Assert.*;
-
 import java.text.ParseException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
