@@ -25,6 +25,7 @@ pipeline {
             }
         }
        
+       
         stage("Nexus") {
             steps {           
                     bat "mvn deploy"
