@@ -10,7 +10,6 @@ tn\esprit\spring\entities\MissionExterne.class
 tn\esprit\spring\repository\DepartementRepository.class
 tn\esprit\spring\entities\Role.class
 tn\esprit\spring\entities\User.class
-tn\esprit\spring\repository\MissionRepository.class
 tn\esprit\spring\services\IUserService.class
 tn\esprit\spring\entities\Mission.class
 tn\esprit\spring\entities\TimesheetPK.class
