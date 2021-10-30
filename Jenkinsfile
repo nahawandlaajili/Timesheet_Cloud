@@ -2,7 +2,6 @@ pipeline {
 
     agent any
 
-
     stages {
        stage ('GIT') {
             steps {
@@ -12,8 +11,7 @@ pipeline {
         
             }
         }
-        
-        
+            
         stage("Build") {
             steps {
                 bat "mvn -version"
@@ -27,5 +25,10 @@ pipeline {
             }
         }
         
+        stage("Nexus") {
+            steps {           
+                    bat "mvn deploy"
+                }         
+        }
    
 }
