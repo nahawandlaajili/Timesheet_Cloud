@@ -34,13 +34,13 @@ public class DepartementServiceImplTest {
 	public void testRetrieveAllDepartements() {
 		List<Departement> listDepartements = depService.getAllDepartements();
 		// if there are 7 departements in DB :
-		Assert.assertEquals(1, listDepartements.size());
+		Assert.assertEquals(7, listDepartements.size());
 	}
 	
 
 	@Test
 	public void testRetrieveDep() {
-	Departement dep = depService.retrieveDepartement(1);
+	Departement dep = depService.retrieveDepartement(6);
 	Assert.assertEquals(6, dep.getId());
 	l.info("retrieveDep : "+ dep);
 	}

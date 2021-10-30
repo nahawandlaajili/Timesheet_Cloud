@@ -24,8 +24,24 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 
 	@Override
 	public List<Entreprise> getAllEntreprises() {
-		return (List<Entreprise>) entrepriseRepository.findAll();
-	}
+			List<Entreprise> entreprises = null; 
+			try {
+		
+				l.info("In retrieveAllEntreprises() : ");
+				entreprises = (List<Entreprise>) entrepriseRepository.findAll();  
+				for (Entreprise entreprise : entreprises) {
+					l.debug("Ent +++ : " + entreprise);
+				} 
+				l.info("Out of retrieveAllEntreprises() : ");
+			}catch (Exception e) {
+				l.error("Error in retrieveAllEntreprises() : " + e);
+			}
+
+			return entreprises;
+		}
+
+		//return (List<Entreprise>) entrepriseRepository.findAll();
+	
 
 	@Override
 	public Entreprise addEntreprise(Entreprise en) {
@@ -49,6 +65,13 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	public void deleteEnt(int id) {
 		entrepriseRepository.deleteById(id);
 		
+	}
+	@Override
+	public Entreprise retrieveEnt(String id) {
+		l.info("in  retrieveEnt id = " + id);	
+		Entreprise en =  entrepriseRepository.findById(Integer.parseInt(id)).orElse(null);
+		l.info("user returned : " + en);
+		return en; 
 	}
 
 }
