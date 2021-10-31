@@ -51,7 +51,6 @@ public class DepartementServiceImpl implements IDepartementService {
 	public Departement retrieveDepartement(int id) {
 		l.info("in  retrieveDepartement id = " + id);
 		Departement d =  deptRepository.findById(id).orElse(null);
-		//int i = 1/0; 
 		//Departement d =   departementRepository.findById(Long.parseLong(id)).orElse(null);
 		l.info("departement returned : " + d);
 		return d; 
@@ -61,6 +60,27 @@ public class DepartementServiceImpl implements IDepartementService {
 	public void deleteDepartement(int id) {
 		deptRepository.deleteById(id);
 		
+	}
+	
+	@Override
+	public Departement getDepartementById(int id) {
+		return deptRepository.findById(id).orElse(null);
+	}
+	
+	//done
+	@Override
+	public void deleteDep(String id) {
+		deptRepository.deleteById(Integer.parseInt(id));
+	}
+	
+	
+//done
+	@Override
+	public Departement departementRetrieved(String id) {
+		l.info("in  retrieveDep id = " + id);
+		Departement dep = deptRepository.findById(Integer.parseInt(id)).orElse(null);
+		l.info("dep  retrieveDep id = " + dep);
+		return dep;
 	}
 	
 }

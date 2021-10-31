@@ -10,4 +10,7 @@ public interface IDepartementService {
 	Departement retrieveDepartement(int id);
 	void deleteDepartement(int id);
 
+	public Departement getDepartementById(int id);
+	public void deleteDep(String id) ;
+	public Departement departementRetrieved(String id);
 }

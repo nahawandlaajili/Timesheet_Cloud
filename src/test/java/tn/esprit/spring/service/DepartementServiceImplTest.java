@@ -1,5 +1,7 @@
 package tn.esprit.spring.service;
 
+import static org.junit.Assert.*;
+
 import java.text.ParseException;
 
 import java.util.List;
@@ -24,8 +26,7 @@ public class DepartementServiceImplTest {
 
 	private static final Logger l = (Logger) LogManager.getLogger(DepartementServiceImplTest.class);
 	
-	@Autowired
-	IEntrepriseService entrpriseService;
+	
 	
 	@Autowired
 	IDepartementService depService;
@@ -34,39 +35,49 @@ public class DepartementServiceImplTest {
 	public void testRetrieveAllDepartements() {
 		List<Departement> listDepartements = depService.getAllDepartements();
 		// if there are 7 departements in DB :
-		Assert.assertEquals(7, listDepartements.size());
+		Assert.assertEquals(27, listDepartements.size());
 	}
-	
 
 	@Test
 	public void testRetrieveDep() {
-	Departement dep = depService.retrieveDepartement(6);
-	Assert.assertEquals(6, dep.getId());
-	l.info("retrieveDep : "+ dep);
+		Departement dep = depService.retrieveDepartement(6);
+		Assert.assertEquals(6, dep.getId());
+		l.info("retrieveDep : " + dep);
+	}
+
+	
+	@Test
+	public void testAddDepartement() throws ParseException {
+		Departement dep = new Departement("Formation");
+		Departement depAdded = depService.addDep(dep);
+		Assert.assertEquals(dep.getName(), depAdded.getName());
+		l.info(" Departement ajoutée avec succès");
 	}
 
 	@Test
-	public void testAddDepartement() throws ParseException {
-		Departement dep = new Departement("Securite"); 
-		Departement depAdded = depService.addDep(dep); 
-		Assert.assertEquals(dep.getName(), depAdded.getName());
-		l.info(" Departement ajoutée avec succès");
-		}
-
-	@Test
 	public void testUpdateDepartement() throws ParseException {
-		Departement dep = new Departement(2,"Production"); 
-		Departement depAdded = depService.updateDepartement(dep); 
+		Departement dep = new Departement(2, "Production");
+		Departement depAdded = depService.updateDepartement(dep);
 		Assert.assertEquals(dep.getName(), depAdded.getName());
 		l.info(" Departement modifiée avec succès");
-		}
+	}
+
+	/*
+	 * @Test public void testDeleteDep() { depService.deleteDepartement(17);
+	 * Assert.assertNull(depService.retrieveDepartement(17));
+	 * l.info(" Departement supprimée avec succès"); }
+	 */
 	
 	@Test
-	public void testDeleteDep()  {
-		depService.deleteDepartement(3);
-		Assert.assertNull(depService.retrieveDepartement(3));
-		l.info(" Departement supprimée avec succès");
-		}
+	public void testDeleteDepart() throws ParseException {
+		Departement dep = new Departement("Dep_supp");
+		Departement dep_new = depService.addDep(dep);
+		int id = dep_new.getId();
+		depService.deleteDepartement(id);
+		Departement depart = depService.getDepartementById(id);
+		assertNull(depart);
+		l.info("Dep supprimé  : " + dep_new);
+	}
 
 	
 	 // 5 tests unitaires

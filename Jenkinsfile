@@ -3,20 +3,31 @@ pipeline {
     agent any
 
     stages {
-       stage ('GIT') {
+    
+        stage ('GIT') {
             steps {
                echo "Getting Project from Git"; 
                 git branch: "master", 
-                    url: "https://github.com/326-163/timesheet-ci.git";
-        
+                    url: "https://github.com/326-163/timesheet-ci.git";    
             }
         }
             
         stage("Build") {
             steps {
-                bat "mvn -version"
                 bat "mvn clean install -DskipTests"
             }
+        }
+        
+        stage("Maven version") {
+            steps {
+                  bat "mvn -version"
+                  }
+        }
+        
+        stage("tests unitaires ") {
+            steps {
+                bat "mvn test"
+                  }
         }
         
         stage("Sonar") {
@@ -32,4 +43,5 @@ pipeline {
                 }         
         }
    
+}
 }
