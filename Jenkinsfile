@@ -39,7 +39,7 @@ pipeline {
        
         stage("Nexus") {
             steps {           
-                    bat "mvn deploy"
+                    bat "mvn deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=timesheet-ci -Dversion=9.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/timesheet-ci-1.0.jar"
                 }         
         }
    
