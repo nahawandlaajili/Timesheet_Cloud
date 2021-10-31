@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import tn.esprit.spring.services.*;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.services.IDepartementService;
 
@@ -35,7 +34,7 @@ public class DepartementServiceImplTest {
 	public void testRetrieveAllDepartements() {
 		List<Departement> listDepartements = depService.getAllDepartements();
 		// if there are 7 departements in DB :
-		Assert.assertEquals(27, listDepartements.size());
+		Assert.assertEquals(28, listDepartements.size());
 	}
 
 	@Test
