@@ -44,7 +44,7 @@ public class DepartementServiceImplTest {
 		l.info("retrieveDep : " + dep);
 	}
 
-
+/*
 	@Test
 	public void testAddDepartement() throws ParseException {
 		Departement dep = new Departement("Formation");
@@ -52,7 +52,7 @@ public class DepartementServiceImplTest {
 		Assert.assertEquals(dep.getName(), depAdded.getName());
 		l.info(" Departement ajoutée avec succès");
 	}
-
+*/
 	@Test
 	public void testUpdateDepartement() throws ParseException {
 		Departement dep = new Departement(2, "Production");
