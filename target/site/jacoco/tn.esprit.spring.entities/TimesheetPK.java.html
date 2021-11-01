@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TimesheetPK.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">timesheet-ci</a> &gt; <a href="index.source.html" class="el_package">tn.esprit.spring.entities</a> &gt; <span class="el_source">TimesheetPK.java</span></div><h1>TimesheetPK.java</h1><pre class="source lang-java linenums">package tn.esprit.spring.entities;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Embeddable
+public class TimesheetPK implements Serializable {
+
+	private static final long serialVersionUID = 5377539445871317492L;
+
+	private int idMission;
+	
+	private int idEmploye;
+	
+	//Choisir le TemporalType selon le besoin metier
+	@Temporal(TemporalType.DATE)
+	private Date dateDebut;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dateFin;
+	
+
+	public TimesheetPK() {
+<span class="nc" id="L28">		super();</span>
+<span class="nc" id="L29">	}</span>
+	
+	public TimesheetPK(int idMission, int idEmploye, Date dateDebut, Date dateFin) {
+<span class="nc" id="L32">		super();</span>
+<span class="nc" id="L33">		this.idMission = idMission;</span>
+<span class="nc" id="L34">		this.idEmploye = idEmploye;</span>
+<span class="nc" id="L35">		this.dateDebut = dateDebut;</span>
+<span class="nc" id="L36">		this.dateFin = dateFin;</span>
+<span class="nc" id="L37">	}</span>
+
+	//Pour que hibernate peut comparer deux objets (par exemple : recherche de l'objet dans le persistenceContext), 
+	//Il doit pouvoir comparer les primary key des deux entites
+	//Vu que l'entite a une clé composé, on doit implementer la methode equal.
+	//Utiliser l'IDE pour générer le equal et le hashcode
+	@Override
+	public int hashCode() {
+<span class="nc" id="L45">		final int prime = 31;</span>
+<span class="nc" id="L46">		int result = 1;</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">		result = prime * result + ((dateDebut == null) ? 0 : dateDebut.hashCode());</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());</span>
+<span class="nc" id="L49">		result = prime * result + idEmploye;</span>
+<span class="nc" id="L50">		result = prime * result + idMission;</span>
+<span class="nc" id="L51">		return result;</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L56" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L57">			return true;</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L59">			return false;</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L61">			return false;</span>
+<span class="nc" id="L62">		TimesheetPK other = (TimesheetPK) obj;</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		if (dateDebut == null) {</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">			if (other.dateDebut != null)</span>
+<span class="nc" id="L65">				return false;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">		} else if (!dateDebut.equals(other.dateDebut))</span>
+<span class="nc" id="L67">			return false;</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">		if (dateFin == null) {</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">			if (other.dateFin != null)</span>
+<span class="nc" id="L70">				return false;</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		} else if (!dateFin.equals(other.dateFin))</span>
+<span class="nc" id="L72">			return false;</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">		if (idEmploye != other.idEmploye)</span>
+<span class="nc" id="L74">			return false;</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">		if (idMission != other.idMission)</span>
+<span class="nc" id="L76">			return false;</span>
+<span class="nc" id="L77">		return true;</span>
+	}
+
+	public void setIdMission(int idMission) {
+<span class="nc" id="L81">		this.idMission = idMission;</span>
+<span class="nc" id="L82">	}</span>
+
+	public int getIdEmploye() {
+<span class="nc" id="L85">		return idEmploye;</span>
+	}
+
+	public void setIdEmploye(int idEmploye) {
+<span class="nc" id="L89">		this.idEmploye = idEmploye;</span>
+<span class="nc" id="L90">	}</span>
+
+	public Date getDateDebut() {
+<span class="nc" id="L93">		return dateDebut;</span>
+	}
+
+	public void setDateDebut(Date dateDebut) {
+<span class="nc" id="L97">		this.dateDebut = dateDebut;</span>
+<span class="nc" id="L98">	}</span>
+
+	public Date getDateFin() {
+<span class="nc" id="L101">		return dateFin;</span>
+	}
+
+	public void setDateFin(Date dateFin) {
+<span class="nc" id="L105">		this.dateFin = dateFin;</span>
+<span class="nc" id="L106">	}</span>
+
+	public int getIdMission() {
+<span class="nc" id="L109">		return idMission;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

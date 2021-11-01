@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DepartementServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">timesheet-ci</a> &gt; <a href="index.source.html" class="el_package">tn.esprit.spring.services</a> &gt; <span class="el_source">DepartementServiceImpl.java</span></div><h1>DepartementServiceImpl.java</h1><pre class="source lang-java linenums">package tn.esprit.spring.services;
+
+
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import tn.esprit.spring.entities.Departement;
+import tn.esprit.spring.repository.DepartementRepository;
+
+@Service
+<span class="fc" id="L15">public class DepartementServiceImpl implements IDepartementService {</span>
+
+	@Autowired
+	DepartementRepository deptRepository;
+
+
+
+<span class="fc" id="L22">	private static final Logger l = LogManager.getLogger(DepartementServiceImpl.class);</span>
+
+	public List&lt;Departement&gt; getAllDepartements() {
+<span class="fc" id="L25">		List&lt;Departement&gt; departements = null; </span>
+		try {
+<span class="fc" id="L27">		l.info(&quot;In retrieveAllDepartement() : &quot;);</span>
+<span class="fc" id="L28">		departements = (List&lt;Departement&gt;) deptRepository.findAll();  </span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">		for (Departement dep : departements) {</span>
+<span class="fc" id="L30">			l.debug(&quot;departement +++ : &quot; + dep);</span>
+<span class="fc" id="L31">		} </span>
+<span class="fc" id="L32">		l.info(&quot;Out of retrieveAllDepartement() : &quot;);</span>
+<span class="nc" id="L33">	}catch (Exception e) {</span>
+<span class="nc" id="L34">		l.error(&quot;Error in retrieveAllDepartement() : &quot; + e);</span>
+<span class="fc" id="L35">	}</span>
+
+<span class="fc" id="L37">	return departements;</span>
+	}
+
+	@Override
+	public Departement addDep(Departement dep) {
+<span class="fc" id="L42">		return deptRepository.save(dep);</span>
+	}
+
+	@Override
+	public Departement updateDepartement(Departement dep) {
+<span class="fc" id="L47">		return deptRepository.save(dep);</span>
+	}
+
+	@Override
+	public Departement retrieveDepartement(int id) {
+<span class="fc" id="L52">		l.info(&quot;in  retrieveDepartement id = &quot; + id);</span>
+<span class="fc" id="L53">		Departement d =  deptRepository.findById(id).orElse(null);</span>
+		//Departement d =   departementRepository.findById(Long.parseLong(id)).orElse(null);
+<span class="fc" id="L55">		l.info(&quot;departement returned : &quot; + d);</span>
+<span class="fc" id="L56">		return d; </span>
+	}
+
+	@Override
+	public void deleteDepartement(int id) {
+<span class="fc" id="L61">		deptRepository.deleteById(id);</span>
+		
+<span class="fc" id="L63">	}</span>
+	
+	@Override
+	public Departement getDepartementById(int id) {
+<span class="fc" id="L67">		return deptRepository.findById(id).orElse(null);</span>
+	}
+	
+	//done
+	@Override
+	public void deleteDep(String id) {
+<span class="nc" id="L73">		deptRepository.deleteById(Integer.parseInt(id));</span>
+<span class="nc" id="L74">	}</span>
+	
+	
+//done
+	@Override
+	public Departement departementRetrieved(String id) {
+<span class="nc" id="L80">		l.info(&quot;in  retrieveDep id = &quot; + id);</span>
+<span class="nc" id="L81">		Departement dep = deptRepository.findById(Integer.parseInt(id)).orElse(null);</span>
+<span class="nc" id="L82">		l.info(&quot;dep  retrieveDep id = &quot; + dep);</span>
+<span class="nc" id="L83">		return dep;</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

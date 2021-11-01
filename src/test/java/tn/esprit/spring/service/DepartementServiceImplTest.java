@@ -30,13 +30,13 @@ public class DepartementServiceImplTest {
 	@Autowired
 	IDepartementService depService;
 
-/*	@Test
+@Test
 	public void testRetrieveAllDepartements() {
 		List<Departement> listDepartements = depService.getAllDepartements();
 		// if there are 7 departements in DB :
-		Assert.assertEquals(29, listDepartements.size());
+		Assert.assertEquals(52, listDepartements.size());
 	}
-*/
+
 	@Test
 	public void testRetrieveDep() {
 		Departement dep = depService.retrieveDepartement(6);
@@ -44,7 +44,7 @@ public class DepartementServiceImplTest {
 		l.info("retrieveDep : " + dep);
 	}
 
-	
+
 	@Test
 	public void testAddDepartement() throws ParseException {
 		Departement dep = new Departement("Formation");
