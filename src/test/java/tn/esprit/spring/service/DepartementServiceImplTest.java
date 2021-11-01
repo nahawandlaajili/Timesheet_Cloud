@@ -39,14 +39,14 @@ public class DepartementServiceImplTest {
 		Assert.assertEquals(dep.getName(), depAdded.getName());
 		l.info(" Departement ajoutée avec succès");
 	}
-
+/*
 @Test
 	public void testRetrieveAllDepartements() {
 		List<Departement> listDepartements = depService.getAllDepartements();
 		// if there are 7 departements in DB :
 		Assert.assertEquals(62, listDepartements.size());
 	}
-
+*/
 	@Test
 	public void testRetrieveDep() {
 		Departement dep = depService.retrieveDepartement(6);
