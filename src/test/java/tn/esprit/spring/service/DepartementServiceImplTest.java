@@ -44,7 +44,7 @@ public class DepartementServiceImplTest {
 	public void testRetrieveAllDepartements() {
 		List<Departement> listDepartements = depService.getAllDepartements();
 		// if there are 7 departements in DB :
-		Assert.assertEquals(60, listDepartements.size());
+		Assert.assertEquals(62, listDepartements.size());
 	}
 
 	@Test
