@@ -30,11 +30,21 @@ public class DepartementServiceImplTest {
 	@Autowired
 	IDepartementService depService;
 
+	
+
+	@Test
+	public void testAddDepartement() throws ParseException {
+		Departement dep = new Departement("Formation");
+		Departement depAdded = depService.addDep(dep);
+		Assert.assertEquals(dep.getName(), depAdded.getName());
+		l.info(" Departement ajoutée avec succès");
+	}
+
 @Test
 	public void testRetrieveAllDepartements() {
 		List<Departement> listDepartements = depService.getAllDepartements();
 		// if there are 7 departements in DB :
-		Assert.assertEquals(55, listDepartements.size());
+		Assert.assertEquals(58, listDepartements.size());
 	}
 
 	@Test
@@ -44,15 +54,7 @@ public class DepartementServiceImplTest {
 		l.info("retrieveDep : " + dep);
 	}
 
-/*
-	@Test
-	public void testAddDepartement() throws ParseException {
-		Departement dep = new Departement("Formation");
-		Departement depAdded = depService.addDep(dep);
-		Assert.assertEquals(dep.getName(), depAdded.getName());
-		l.info(" Departement ajoutée avec succès");
-	}
-*/
+
 	@Test
 	public void testUpdateDepartement() throws ParseException {
 		Departement dep = new Departement(2, "Production");
