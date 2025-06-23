@@ -1,99 +1,42 @@
 package tn.esprit.spring.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 @Entity
-public class Entreprise implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3152690779535828408L;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Entreprise implements Serializable {
 
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	
-	private String name;
-	
-	
-	private String raisonSocial;
-	
-	@OneToMany(mappedBy="entreprise", 
-			cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, 
-			fetch=FetchType.EAGER)
-	private List<Departement> departements = new ArrayList<>();
+    private static final long serialVersionUID = 3152690779535828408L;
 
-	public Entreprise(String name, String raisonSocial) {
-		this.name = name;
-		this.raisonSocial = raisonSocial;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	public int getId() {
-		return id;
-	}
+    private String name;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    private String raisonSocial;
 
-	public String getName() {
-		return name;
-	}
+    @OneToMany(mappedBy = "entreprise",
+               cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+               fetch = FetchType.EAGER)
+    private List<Departement> departements = new ArrayList<>();
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Entreprise(String name, String raisonSocial) {
+        this.name = name;
+        this.raisonSocial = raisonSocial;
+    }
 
-	public String getRaisonSocial() {
-		return raisonSocial;
-	}
-
-	public void setRaisonSocial(String raisonSocial) {
-		this.raisonSocial = raisonSocial;
-	}
-
-	public List<Departement> getDepartements() {
-		return departements;
-	}
-
-	public void setDepartements(List<Departement> departements) {
-		this.departements = departements;
-	}
-	
-	
-	public void addDepartement(Departement departement){
-		departement.setEntreprise(this);
-		this.departements.add(departement);
-	}
-
-	public Entreprise(int id, String name, String raisonSocial) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.raisonSocial = raisonSocial;
-	}
-
-	public Entreprise(int id, String name, String raisonSocial, List<Departement> departements) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.raisonSocial = raisonSocial;
-		this.departements = departements;
-	}
-
-
-
-
+    public void addDepartement(Departement departement) {
+        departement.setEntreprise(this);
+        this.departements.add(departement);
+    }
 }

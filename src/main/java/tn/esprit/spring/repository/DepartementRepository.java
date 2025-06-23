@@ -1,11 +1,16 @@
 package tn.esprit.spring.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import tn.esprit.spring.entities.Departement;
-// COOMMIT TEST
+
+/**
+ * Repository interface for managing Departement entities.
+ * Extends JpaRepository to provide CRUD and pagination operations.
+ */
 @Repository
-public interface DepartementRepository extends CrudRepository<Departement, Integer>{
+public interface DepartementRepository extends JpaRepository<Departement, Integer> {
+
+    // Additional custom queries can be declared here if needed
 
 }

@@ -1,86 +1,42 @@
 package tn.esprit.spring.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Mission implements Serializable {
 
-	private static final long serialVersionUID = -5369734855993305723L;
+    private static final long serialVersionUID = -5369734855993305723L;
 
-	// Auto Increment 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	
-	private String name;
-	
-	private String description;
-	
-	@ManyToOne
-	private Departement departement;
-	
-	// Mission est la cardinalité la plus faible, donc mappedBy ici : 
-	@OneToMany(mappedBy="mission")
-	private  List<Timesheet> timesheets;
-	
-	public Mission() {
-		super();
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	public Mission(String name, String description){
-		this.name = name;
-		this.description = description;
-	}
-	
+    private String name;
 
-	public int getId() {
-		return id;
-	}
+    private String description;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    @ManyToOne
+    private Departement departement;
 
-	public String getName() {
-		return name;
-	}
+    @OneToMany(mappedBy = "mission")
+    private List<Timesheet> timesheets;
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Departement getDepartement() {
-		return departement;
-	}
-
-	public void setDepartement(Departement departement) {
-		this.departement = departement;
-	}
-
-	public List<Timesheet> getTimesheets() {
-		return timesheets;
-	}
-
-	public void setTimesheets(List<Timesheet> timesheets) {
-		this.timesheets = timesheets;
-	}
-	
-	
-
+    public Mission(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }
+// This class represents a Mission entity in the system, which is associated with a Departement and can have multiple Timesheets.
+// It includes fields for the mission's ID, name, description, and relationships with the Departement and Timesheet entities.
+// The class is annotated with JPA annotations to define its persistence behavior,
+// and it uses Lombok annotations to generate boilerplate code like getters, setters, and constructors.
+// The serialVersionUID is defined for serialization compatibility. The class also includes a constructor for creating a Mission with just a name and description, allowing for easier instantiation without needing to set all fields.

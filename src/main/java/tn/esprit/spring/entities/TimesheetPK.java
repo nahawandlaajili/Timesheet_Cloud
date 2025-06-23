@@ -1,112 +1,97 @@
 package tn.esprit.spring.entities;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Objects;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
+/**
+ * Composite primary key for Timesheet entity.
+ */
 @Embeddable
 public class TimesheetPK implements Serializable {
 
-	private static final long serialVersionUID = 5377539445871317492L;
+    private static final long serialVersionUID = 5377539445871317492L;
 
-	private int idMission;
-	
-	private int idEmploye;
-	
-	//Choisir le TemporalType selon le besoin metier
-	@Temporal(TemporalType.DATE)
-	private Date dateDebut;
-	
-	@Temporal(TemporalType.DATE)
-	private Date dateFin;
-	
+    @Column(name = "idMission", nullable = false)
+    private int idMission;
 
-	public TimesheetPK() {
-		super();
-	}
-	
-	public TimesheetPK(int idMission, int idEmploye, Date dateDebut, Date dateFin) {
-		super();
-		this.idMission = idMission;
-		this.idEmploye = idEmploye;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-	}
+    @Column(name = "idEmploye", nullable = false)
+    private int idEmploye;
 
-	//Pour que hibernate peut comparer deux objets (par exemple : recherche de l'objet dans le persistenceContext), 
-	//Il doit pouvoir comparer les primary key des deux entites
-	//Vu que l'entite a une clé composé, on doit implementer la methode equal.
-	//Utiliser l'IDE pour générer le equal et le hashcode
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((dateDebut == null) ? 0 : dateDebut.hashCode());
-		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());
-		result = prime * result + idEmploye;
-		result = prime * result + idMission;
-		return result;
-	}
+    @Column(name = "dateDebut", nullable = false)
+    private LocalDate dateDebut;
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TimesheetPK other = (TimesheetPK) obj;
-		if (dateDebut == null) {
-			if (other.dateDebut != null)
-				return false;
-		} else if (!dateDebut.equals(other.dateDebut))
-			return false;
-		if (dateFin == null) {
-			if (other.dateFin != null)
-				return false;
-		} else if (!dateFin.equals(other.dateFin))
-			return false;
-		if (idEmploye != other.idEmploye)
-			return false;
-		if (idMission != other.idMission)
-			return false;
-		return true;
-	}
+    @Column(name = "dateFin", nullable = false)
+    private LocalDate dateFin;
 
-	public void setIdMission(int idMission) {
-		this.idMission = idMission;
-	}
+    public TimesheetPK() {
+        // Default constructor
+    }
 
-	public int getIdEmploye() {
-		return idEmploye;
-	}
+    public TimesheetPK(int idMission, int idEmploye, LocalDate dateDebut, LocalDate dateFin) {
+        this.idMission = idMission;
+        this.idEmploye = idEmploye;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+    }
 
-	public void setIdEmploye(int idEmploye) {
-		this.idEmploye = idEmploye;
-	}
+    public int getIdMission() {
+        return idMission;
+    }
 
-	public Date getDateDebut() {
-		return dateDebut;
-	}
+    public void setIdMission(int idMission) {
+        this.idMission = idMission;
+    }
 
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
+    public int getIdEmploye() {
+        return idEmploye;
+    }
 
-	public Date getDateFin() {
-		return dateFin;
-	}
+    public void setIdEmploye(int idEmploye) {
+        this.idEmploye = idEmploye;
+    }
 
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
-	}
+    public LocalDate getDateDebut() {
+        return dateDebut;
+    }
 
-	public int getIdMission() {
-		return idMission;
-	}
+    public void setDateDebut(LocalDate dateDebut) {
+        this.dateDebut = dateDebut;
+    }
 
+    public LocalDate getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(LocalDate dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TimesheetPK)) return false;
+        TimesheetPK that = (TimesheetPK) o;
+        return idMission == that.idMission &&
+               idEmploye == that.idEmploye &&
+               Objects.equals(dateDebut, that.dateDebut) &&
+               Objects.equals(dateFin, that.dateFin);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idMission, idEmploye, dateDebut, dateFin);
+    }
+
+    @Override
+    public String toString() {
+        return "TimesheetPK{" +
+               "idMission=" + idMission +
+               ", idEmploye=" + idEmploye +
+               ", dateDebut=" + dateDebut +
+               ", dateFin=" + dateFin +
+               '}';
+    }
 }
