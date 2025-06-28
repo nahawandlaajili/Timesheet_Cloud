@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: user-dashboard
+  name: user-dashboard
+  namespace: apps
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 443
+    protocol: TCP
+    targetPort: 443
+  selector:
+    app: user-dashboard
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-dash-svc
+  namespace: apps
+spec:
+  selector:
+    app: user-dashboard
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 5000
+  type: NodePort
