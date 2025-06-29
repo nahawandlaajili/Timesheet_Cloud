@@ -12,6 +12,42 @@ brew install maven
 
 kubectl cluster-info
 
+# mysql
+brew install mysql@8.0
+brew services start mysql@8.0
+mysql_secure_installation
+
+
+==> Summary
+🍺  /opt/homebrew/Cellar/mysql@8.0/8.0.42: 319 files, 303.9MB
+==> Running `brew cleanup mysql@8.0`...
+Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
+Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+==> Caveats
+==> mysql@8.0
+We've installed your MySQL database without a root password. To secure it run:
+    mysql_secure_installation
+
+MySQL is configured to only allow connections from localhost by default
+
+To connect run:
+    mysql -u root
+
+mysql@8.0 is keg-only, which means it was not symlinked into /opt/homebrew,
+because this is an alternate version of another formula.
+
+If you need to have mysql@8.0 first in your PATH, run:
+  echo 'export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find mysql@8.0 you may need to set:
+  export LDFLAGS="-L/opt/homebrew/opt/mysql@8.0/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/mysql@8.0/include"
+
+To restart mysql@8.0 after an upgrade:
+  brew services restart mysql@8.0
+Or, if you don't want/need a background service you can just run:
+  /opt/homebrew/opt/mysql@8.0/bin/mysqld_safe --datadir\=/opt/homebrew/var/mysql
+
 # Jenkins
 Install the latest LTS version: brew install jenkins-lts
 Start the Jenkins service: brew services start jenkins-lts
