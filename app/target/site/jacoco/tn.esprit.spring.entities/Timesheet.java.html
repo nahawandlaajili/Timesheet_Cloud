@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Timesheet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">timesheet-ci</a> &gt; <a href="index.source.html" class="el_package">tn.esprit.spring.entities</a> &gt; <span class="el_source">Timesheet.java</span></div><h1>Timesheet.java</h1><pre class="source lang-java linenums">package tn.esprit.spring.entities;
+
+import java.io.Serializable;
+import java.util.Objects;
+import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.EmbeddedId;
+import tn.esprit.spring.entities.Mission;
+import tn.esprit.spring.entities.Employe;
+import tn.esprit.spring.entities.TimesheetPK;   
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
+/**
+ * Entity representing a timesheet record which links an employee to a mission with validation status.
+ */
+@Entity
+public class Timesheet implements Serializable {
+
+    private static final long serialVersionUID = 3876346912862238239L;
+
+    @EmbeddedId
+    private TimesheetPK timesheetPK;
+
+    // idMission is both primary key and foreign key
+    @ManyToOne
+    @JoinColumn(name = &quot;idMission&quot;, referencedColumnName = &quot;id&quot;, insertable = false, updatable = false)
+    private Mission mission;
+
+    // idEmploye is both primary key and foreign key
+    @ManyToOne
+    @JoinColumn(name = &quot;idEmploye&quot;, referencedColumnName = &quot;id&quot;, insertable = false, updatable = false)
+    private Employe employe;
+
+    @NotNull
+    @Column(name = &quot;is_valide&quot;, nullable = false)
+    private boolean isValide;
+
+<span class="nc" id="L44">    public Timesheet() {</span>
+        // Default constructor
+<span class="nc" id="L46">    }</span>
+
+<span class="nc" id="L48">    public Timesheet(TimesheetPK timesheetPK, Mission mission, Employe employe, boolean isValide) {</span>
+<span class="nc" id="L49">        this.timesheetPK = timesheetPK;</span>
+<span class="nc" id="L50">        this.mission = mission;</span>
+<span class="nc" id="L51">        this.employe = employe;</span>
+<span class="nc" id="L52">        this.isValide = isValide;</span>
+<span class="nc" id="L53">    }</span>
+
+    public TimesheetPK getTimesheetPK() {
+<span class="nc" id="L56">        return timesheetPK;</span>
+    }
+
+    public void setTimesheetPK(TimesheetPK timesheetPK) {
+<span class="nc" id="L60">        this.timesheetPK = timesheetPK;</span>
+<span class="nc" id="L61">    }</span>
+
+    public Mission getMission() {
+<span class="nc" id="L64">        return mission;</span>
+    }
+
+    public void setMission(Mission mission) {
+<span class="nc" id="L68">        this.mission = mission;</span>
+<span class="nc" id="L69">    }</span>
+
+    public Employe getEmploye() {
+<span class="nc" id="L72">        return employe;</span>
+    }
+
+    public void setEmploye(Employe employe) {
+<span class="nc" id="L76">        this.employe = employe;</span>
+<span class="nc" id="L77">    }</span>
+
+    public boolean isValide() {
+<span class="nc" id="L80">        return isValide;</span>
+    }
+
+    public void setValide(boolean isValide) {
+<span class="nc" id="L84">        this.isValide = isValide;</span>
+<span class="nc" id="L85">    }</span>
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (this == o) return true;</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (!(o instanceof Timesheet)) return false;</span>
+<span class="nc" id="L91">        Timesheet timesheet = (Timesheet) o;</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        return isValide == timesheet.isValide &amp;&amp;</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">                Objects.equals(timesheetPK, timesheet.timesheetPK) &amp;&amp;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">                Objects.equals(mission, timesheet.mission) &amp;&amp;</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                Objects.equals(employe, timesheet.employe);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L100">        return Objects.hash(timesheetPK, mission, employe, isValide);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L105">        return &quot;Timesheet{&quot; +</span>
+                &quot;timesheetPK=&quot; + timesheetPK +
+                &quot;, mission=&quot; + mission +
+                &quot;, employe=&quot; + employe +
+                &quot;, isValide=&quot; + isValide +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

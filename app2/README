@@ -1,0 +1,72 @@
+// Root Project: dashboard-app
+
+// Each of the following microservices is structured as an independent Maven project.
+
+// 1. user-profile-service
+//    - Provides user profile information (Department, Job Role, Contract)
+
+// 2. timesheet-service
+//    - Manages timesheet records
+
+// Backend Technology Stack:
+// - Java 17
+// - Spring Boot 3.x
+// - Spring Web, Spring Data JPA
+// - H2 in-memory database (for development)
+// - Maven 3.9.10
+
+// Frontend:
+// - React 18 (Vite or Create React App)
+// - Axios for API calls
+// - Tailwind CSS (optional for clean UI)
+
+// API Communication:
+// - REST over HTTP
+// - JSON data format
+
+// Next Steps:
+// - Scaffold user-profile-service with entities, repositories, and controllers
+// - Scaffold timesheet-service
+// - Scaffold basic React frontend
+// - Optional: Add API gateway with Spring Cloud Gateway
+
+// Project folder structure:
+
+// dashboard-app/
+// ├── user-profile-service/
+// │   └── src/main/java/com/example/userprofile/
+// │       ├── controller/
+// │       ├── service/
+// │       ├── repository/
+// │       └── model/
+// ├── timesheet-service/
+// │   └── src/main/java/com/example/timesheet/
+// ├── frontend/
+// │   └── src/
+// └── docker-compose.yml (optional)
+
+timesheet-service microservice
+It will include:
+
+Java 17 + Spring Boot
+
+MySQL DB integration
+
+REST endpoints to manage timesheet records (date, hours worked, task description, userId reference)
+
+timesheet-service/
+├── src/main/java/com/example/timesheet/
+│   ├── TimesheetServiceApplication.java
+│   ├── controller/TimesheetController.java
+│   ├── model/Timesheet.java
+│   ├── repository/TimesheetRepository.java
+│   └── service/TimesheetService.java
+└── src/main/resources/
+    └── application.yml
+
+
+// ℹ️ application.yml role:
+// - Defines server config (e.g., port)
+// - Database config (MySQL URL, credentials, dialect)
+// - JPA and Hibernate behavior
+// - App name (used in logs and discovery)

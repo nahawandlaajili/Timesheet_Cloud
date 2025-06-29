@@ -9,7 +9,6 @@ tn/esprit/spring/repository/UserRepository.class
 tn/esprit/spring/entities/ContractType.class
 tn/esprit/spring/entities/Contrat.class
 tn/esprit/spring/services/DepartementServiceImpl.class
-tn/esprit/spring/TimesheetApplication.class
 tn/esprit/spring/repository/DepartementRepository.class
 tn/esprit/spring/entities/User.class
 tn/esprit/spring/services/IDepartementService.class

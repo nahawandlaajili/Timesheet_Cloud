@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MissionExterne.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">timesheet-ci</a> &gt; <a href="index.source.html" class="el_package">tn.esprit.spring.entities</a> &gt; <span class="el_source">MissionExterne.java</span></div><h1>MissionExterne.java</h1><pre class="source lang-java linenums">package tn.esprit.spring.entities;
+
+import java.math.BigDecimal;
+import java.util.Objects;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import tn.esprit.spring.entities.Mission;   
+import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
+/**
+ * Entity representing an external mission.
+ */
+@Entity
+public class MissionExterne extends Mission {
+
+    private static final long serialVersionUID = -3046278688391172322L;
+
+    @Email(message = &quot;Email should be valid&quot;)
+    @NotBlank(message = &quot;Billing email cannot be blank&quot;)
+    @Column(name = &quot;email_facturation&quot;, nullable = false, length = 100)
+    private String emailFacturation;
+
+    @Positive(message = &quot;Daily rate must be positive&quot;)
+    @Column(name = &quot;taux_journalier_moyen&quot;, nullable = false, precision = 10, scale = 2)
+    private BigDecimal tauxJournalierMoyen;
+
+    public MissionExterne() {
+<span class="nc" id="L39">        super(&quot;bla&quot;,&quot;bla&quot;);</span>
+<span class="nc" id="L40">    }</span>
+
+    public MissionExterne(String name, String description, String emailFacturation, BigDecimal tauxJournalierMoyen) {
+<span class="nc" id="L43">        super(name, description);</span>
+<span class="nc" id="L44">        this.emailFacturation = emailFacturation;</span>
+<span class="nc" id="L45">        this.tauxJournalierMoyen = tauxJournalierMoyen;</span>
+<span class="nc" id="L46">    }</span>
+
+    public String getEmailFacturation() {
+<span class="nc" id="L49">        return emailFacturation;</span>
+    }
+
+    public void setEmailFacturation(String emailFacturation) {
+<span class="nc" id="L53">        this.emailFacturation = emailFacturation;</span>
+<span class="nc" id="L54">    }</span>
+
+    public BigDecimal getTauxJournalierMoyen() {
+<span class="nc" id="L57">        return tauxJournalierMoyen;</span>
+    }
+
+    public void setTauxJournalierMoyen(BigDecimal tauxJournalierMoyen) {
+<span class="nc" id="L61">        this.tauxJournalierMoyen = tauxJournalierMoyen;</span>
+<span class="nc" id="L62">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L66">        return &quot;MissionExterne{&quot; +</span>
+                &quot;emailFacturation='&quot; + emailFacturation + '\'' +
+                &quot;, tauxJournalierMoyen=&quot; + tauxJournalierMoyen +
+<span class="nc" id="L69">                &quot;} &quot; + super.toString();</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (this == o) return true;</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (!(o instanceof MissionExterne)) return false;</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (!super.equals(o)) return false;</span>
+<span class="nc" id="L77">        MissionExterne that = (MissionExterne) o;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        return Objects.equals(emailFacturation, that.emailFacturation) &amp;&amp;</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                Objects.equals(tauxJournalierMoyen, that.tauxJournalierMoyen);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L84">        return Objects.hash(super.hashCode(), emailFacturation, tauxJournalierMoyen);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

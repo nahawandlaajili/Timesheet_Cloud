@@ -10,4 +10,10 @@ import tn.esprit.spring.entities.Departement;
  */
 @Repository
 public interface DepartementRepository extends JpaRepository<Departement, Integer> {
+    // No additional methods are needed as JpaRepository provides basic CRUD operations
+    // and pagination support for Departement entities.
+    // You can define custom query methods here if needed.
+}
+
+
 

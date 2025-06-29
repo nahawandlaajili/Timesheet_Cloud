@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: userdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  user-profile-service:
+    build: ./user-profile-service
+    container_name: user-profile-service
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/userdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootpassword
+
+  timesheet-service:
+    build: ./timesheet-service
+    container_name: timesheet-service
+    restart: always
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/userdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootpassword
+
+  frontend:
+    build: ./frontend
+    container_name: dashboard-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - user-profile-service
+      - timesheet-service
+
+volumes:
+  mysql-data:
