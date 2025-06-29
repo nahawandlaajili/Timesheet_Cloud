@@ -3,8 +3,8 @@
 # FROM eclipse-temurin:21-jdk as builder
 FROM maven:3.9.6-eclipse-temurin-17 AS builder
 
-# # Set working directory inside the container
-# WORKDIR /app
+# # Set working directory inside the container to /app
+ WORKDIR /app
 
 # Copy Maven files
 COPY . .
@@ -36,4 +36,3 @@ EXPOSE 8080
 
 # Run the app
 ENTRYPOINT ["java", "-jar", "app.jar"]
-# ---- End of Dockerfile ----
