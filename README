@@ -1,0 +1,14 @@
+# Timesheet 
+User
+Employe
+Contrat - Contrat Type
+Department
+Entreprise 
+Mission - Mission Externe 
+Role (CHEF_DEPARTEMENT, ADMINISTRATEUR, INGENIEUR, TECHNICIEN) 
+Timeshhet - TimesheetPK
+
+# to build and push docker image with the latest changes, you can use the following commands:
+docker login
+docker build -t nahawandl/timesheet-app:latest .
+docker build -t nahawandl/timesheet-app:latest 
