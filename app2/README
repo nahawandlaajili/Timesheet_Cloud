@@ -70,3 +70,25 @@ timesheet-service/
 // - Database config (MySQL URL, credentials, dialect)
 // - JPA and Hibernate behavior
 // - App name (used in logs and discovery)
+
+
+# build project
+mvn clean package
+
+# run project 
+mvn spring-boot:run
+ or java -jar target/user-profile-service-0.0.1-SNAPSHOT.jar
+
+
+# test api
+curl http://localhost:8081/api/user-profiles
+or http://localhost:8081/api/user-profiles 
+
+
+------
+other steps
+
+# skip tests temporarly 
+mvn clean package -DskipTests
+ or mvn spring-boot:run -DskipTests
+ 

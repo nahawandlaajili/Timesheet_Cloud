@@ -1,0 +1,30 @@
+# Best Paractise 
+https://blog.stackademic.com/real-world-kubernetes-deployment-tips-for-production-grade-apps-a18b97959157
+https://blog.devops.dev/7-best-practices-for-writing-kubernetes-yaml-manifests-97554d12b2b9
+
+# Ingress
+## Installation
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace reverse-proxy --create-namespace
+
+kubectl get service --namespace reverse-proxy ingress-nginx-controller --output wide --watch
+https://onairotich.medium.com/services-and-ingress-7afc517f2ec6
+https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
+
+# Secret 
+https://blog.stackademic.com/7-latest-secret-kubernetes-tricks-you-didnt-know-ever-in-2025-3d52be234acb
+https://blog.stackademic.com/7-latest-secret-kubernetes-tricks-you-didnt-know-ever-in-2025-3d52be234acb
+
+# cert-manager
+https://opstree.com/blog/page/41/
+
+#HealthChecks and Probes
+https://betterstack.com/community/guides/monitoring/kubernetes-health-checks/
+
+
+# k3d
+k3d cluster list
+k3d cluster start dev-cluster
+k3d cluster delete dev-cluster
+k3d cluster create dev-cluster --agents 2
