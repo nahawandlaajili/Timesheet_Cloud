@@ -1,0 +1,82 @@
+# Readme page for User Service. 
+// 1. user-profile-service
+//    - Provides user profile information (Department, Job Role, Contract)
+
+## Backend Project Folder Structure 
+user-service/src/main/java/com/cloud/userservice/
+ ├── controller/
+ │    ├── AuthController.java
+ │    └── UserProfileController.java
+ ├── model/
+ │    └── UserProfile.java
+ ├── repository/
+ │    └── UserProfileRepository.java
+ ├── service/
+ │    ├── AuthService.java
+ │    └── UserProfileService.java
+ └── UserServiceApplication.java
+
+## Frontend Project Folder Structure
+timesheet-frontend
+    ├── node_modules/
+    ├── public/
+    └── src
+        ├── App.css
+        ├── App.js
+        ├── index.css
+        └── index.js
+        └── login.js
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+
+
+------------------------------------------------------------------------------------------
+# Postgres DB
+psql postgres 
+## Create database
+CREATE DATABASE userdb;
+
+## Create user with password
+CREATE USER user_service WITH PASSWORD 'grgjUHI9';
+
+## Give privileges
+GRANT ALL PRIVILEGES ON DATABASE userdb TO user_service;
+
+## check all users 
+\du
+
+## list tables
+\dt           
+
+## describe columns of the 'users' table
+\d users       
+
+## see all data
+SELECT * FROM users;  
+
+## exit
+\q
+
+------------------------------------------------------------------------------------------
+# build project
+mvn clean package
+
+# run project 
+mvn spring-boot:run
+ or java -jar target/user-profile-service-0.0.1-SNAPSHOT.jar
+
+
+# test api
+curl http://localhost:8081/api/user-profiles
+or http://localhost:8081/api/user-profiles 
+-------------
+Run postgres
+docker run --name userdb -e POSTGRES_USER=user_service -e POSTGRES_PASSWORD=grgjUHI -e POSTGRES_DB=userdb -p 5432:5432 -d postgres:15
+
+-----------------
+## urls
+
+http://localhost:8081/api/users
+http://localhost:8081/actuator/health
+http://localhost:8081/auth/login

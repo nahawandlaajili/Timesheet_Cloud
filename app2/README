@@ -1,56 +1,68 @@
-// Root Project: dashboard-app
+# Root Project: dashboard-app
+This project is a microservices-based application designed to manage user profiles and timesheets. It consists of two main microservices:
 
-// Each of the following microservices is structured as an independent Maven project.
+1. user-profile-service
+- Provides user profile information (Department, Job Role, Contract)
 
-// 1. user-profile-service
-//    - Provides user profile information (Department, Job Role, Contract)
+2. timesheet-service
+- Manages timesheet records
 
-// 2. timesheet-service
-//    - Manages timesheet records
+✅ Each microservice has its own pom.xml.
+✅ mvn clean package → produces an executable JAR: Each service can be packaged and deployed separately.
+✅ Dockerfile → wraps that JAR into a portable container image.
+✅ You can run it with docker run and access it via localhost:8080.
 
-// Backend Technology Stack:
-// - Java 17
-// - Spring Boot 3.x
-// - Spring Web, Spring Data JPA
-// - H2 in-memory database (for development)
-// - Maven 3.9.10
 
-// Frontend:
-// - React 18 (Vite or Create React App)
-// - Axios for API calls
-// - Tailwind CSS (optional for clean UI)
+## Project Structure Overview
+ Each of the following microservices is structured as an independent Maven project.
 
-// API Communication:
-// - REST over HTTP
-// - JSON data format
+ dashboard-app/        <-- root folder (can be just a container project)
+ ├── user-service/      <-- microservice 1
+ │   └── src/main/java/com/example/userservice/
+ │       ├── controller/
+ │       ├── service/
+ │       ├── repository/
+ │       └── model/
+ |       |──  pom.xml
+ ├── timesheet-service/   <-- microservice 2
+ │   └── src/main/java/com/example/timesheet/
+ │       ├── controller/
+ │       ├── service/
+ │       ├── repository/
+ │       └── model/
+ │       └── pom.xml
+ ├── frontend/
+ │   └── src/
+ └── docker-compose.yml (optional)
+ └── pom.xml (optional parent, packaging=pom)
 
-// Next Steps:
+----------------------------------------------------------------------------------------------------------------------------------------
+## Tables
+User
+Employe
+Contrat - Contrat Type
+Department
+Entreprise 
+Mission - Mission Externe 
+Role (CHEF_DEPARTEMENT, ADMINISTRATEUR, INGENIEUR, TECHNICIEN) 
+Timeshhet - TimesheetPK
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+# Next Steps:
 // - Scaffold user-profile-service with entities, repositories, and controllers
 // - Scaffold timesheet-service
 // - Scaffold basic React frontend
 // - Optional: Add API gateway with Spring Cloud Gateway
 
-// Project folder structure:
+----------------------------------------------------------------------------------------------------------------------------------------
 
-// dashboard-app/
-// ├── user-profile-service/
-// │   └── src/main/java/com/example/userprofile/
-// │       ├── controller/
-// │       ├── service/
-// │       ├── repository/
-// │       └── model/
-// ├── timesheet-service/
-// │   └── src/main/java/com/example/timesheet/
-// ├── frontend/
-// │   └── src/
-// └── docker-compose.yml (optional)
-
-timesheet-service microservice
+## 2.timesheet-service microservice
 It will include:
 
 Java 17 + Spring Boot
 
-MySQL DB integration
+Postgres DB integration
 
 REST endpoints to manage timesheet records (date, hours worked, task description, userId reference)
 
@@ -72,23 +84,59 @@ timesheet-service/
 // - App name (used in logs and discovery)
 
 
-# build project
-mvn clean package
-
-# run project 
-mvn spring-boot:run
- or java -jar target/user-profile-service-0.0.1-SNAPSHOT.jar
-
-
-# test api
-curl http://localhost:8081/api/user-profiles
-or http://localhost:8081/api/user-profiles 
-
-
-------
+----------------------------------------------------------------------------------------------------------------------------------------
 other steps
 
 # skip tests temporarly 
 mvn clean package -DskipTests
  or mvn spring-boot:run -DskipTests
- 
+ ----------------------------------------------------------------------------------------------------------------------------------------
+# Postgres DB
+psql postgres 
+## Create database
+CREATE DATABASE userdb;
+
+## Create user with password
+CREATE USER user_service WITH PASSWORD 'grgjUHI9';
+
+## Give privileges
+GRANT ALL PRIVILEGES ON DATABASE userdb TO user_service;
+
+## exit
+\q
+
+------
+## Build cmds
+
+1. mvn clean →  Clean old builds: Deletes the target/ folder (where compiled classes and JARs live).
+2. mvn compile → Compile the code: Compiles your Java source code under src/main/java into .class files inside target/classes.
+No JAR is created yet — just compilation.
+3. mvn test → Run tests : Runs all unit tests under src/test/java.(If you didn’t write tests yet, it will just skip.)
+4. mvn package → Package the app into a JAR: Compiles + runs tests + packages everything into a JAR will be created in target/user-service.jar
+5. mvn package -DskipTests → Skip tests if you just want the JAR quickly
+6. java -jar target/user-service.jar → Run the JAR directly (without Docker yet). Starts your Spring Boot app on port 8080 (default).
+
+
+## After each change rebuild and run 
+mvn clean package – Maven will compile your code, run unit tests (if any), and package everything into a fat JAR (an executable JAR with dependencies).
+
+java -jar target/user-service.jar – Run the application.
+
+By default, the JAR will be located at:
+
+user-service/target/user-service-1.0.0.jar
+
+# to build and push docker image with the latest changes, you can use the following commands:
+docker login
+docker build -t nahawandl/timesheet-app:latest .
+docker build -t nahawandl/timesheet-app:latest 
+--------------------------------------------------
+Run postgres
+docker run --name userdb -e POSTGRES_USER=user_service -e POSTGRES_PASSWORD=password -e POSTGRES_DB=userdb -p 5432:5432 -d postgres:15
+docker run --name timesheetdb -e POSTGRES_USER=timesheet_service -e POSTGRES_PASSWORD=password -e POSTGRES_DB=timesheetdb -p 5433:5432 -d postgres:15
+--------------------------------------------------
+# To run the application with Docker:
+1. Build the Docker image:
+   docker build -t nahawandl/timesheet-app:latest .
+2. Run the Docker container:
+   docker run -p 8080:8080 nahawandl/timesheet-app  

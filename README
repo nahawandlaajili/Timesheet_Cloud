@@ -1,14 +1,49 @@
-# Timesheet 
-User
-Employe
-Contrat - Contrat Type
-Department
-Entreprise 
-Mission - Mission Externe 
-Role (CHEF_DEPARTEMENT, ADMINISTRATEUR, INGENIEUR, TECHNICIEN) 
-Timeshhet - TimesheetPK
+# dashboard-app
+This project contains the following stack
 
-# to build and push docker image with the latest changes, you can use the following commands:
-docker login
-docker build -t nahawandl/timesheet-app:latest .
-docker build -t nahawandl/timesheet-app:latest 
+
+# Backend Technology Stack:
+- Java 17
+- Spring Boot 3.x
+- Spring Web, Spring Data JPA
+- H2 in-memory database (for development)
+- Maven 3.9.10
+- port 8080
+
+# Frontend Technology Stack:
+- React 18 (Vite or Create React App)
+- Axios for API calls
+- Tailwind CSS (optional for clean UI)
+- port 3000/3001
+
+# API Communication:
+- REST over HTTP
+- JSON data format
+
+
+# Monitoring: 
+## Prometheus
+- port 9090
+
+## Grafana
+-port 3000
+
+# Logging: ES, Kibana
+
+# GitOps: ArgoCD
+
+# DB: Postgres
+
+# Containerization:Docker
+
+# Orchestration: kubernetes 
+
+# CICD: Jenkins 
+- port 8080
+
+# sonarQube 
+- port 9000
+
+# Nexus 
+- port 8081
+http://localhost:8081 

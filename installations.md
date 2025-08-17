@@ -1,6 +1,12 @@
 # java
  java brew install openjdk@21
 
+# node js
+brew install node
+npm start
+http://localhost:3001/
+
+
 # maven
 brew install maven
 
@@ -12,13 +18,17 @@ brew install maven
 
 kubectl cluster-info
 
-# mysql
+<!-- # mysql
 brew install mysql@8.0
 brew services start mysql@8.0
-mysql_secure_installation
+mysql_secure_installation -->
 
+# Postgres 
+brew install postgresql@15
+brew services start postgresql@15
+psql --version
 
-==> Summary
+<!-- ==> Summary
 🍺  /opt/homebrew/Cellar/mysql@8.0/8.0.42: 319 files, 303.9MB
 ==> Running `brew cleanup mysql@8.0`...
 Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
@@ -46,7 +56,7 @@ For compilers to find mysql@8.0 you may need to set:
 To restart mysql@8.0 after an upgrade:
   brew services restart mysql@8.0
 Or, if you don't want/need a background service you can just run:
-  /opt/homebrew/opt/mysql@8.0/bin/mysqld_safe --datadir\=/opt/homebrew/var/mysql
+  /opt/homebrew/opt/mysql@8.0/bin/mysqld_safe --datadir\=/opt/homebrew/var/mysql -->
 
 # Jenkins
 Install the latest LTS version: brew install jenkins-lts
@@ -90,6 +100,7 @@ java    |java -v|openjdk 21.0.7 2025-04-15
  -------------------------------------------| 
  Nexus  | UI | 3.80.0-06 
  --------------------------------------------|
+
 
 Credentials
 Jenkins Nahawand 2948ae5c64044265a97de46037982e35

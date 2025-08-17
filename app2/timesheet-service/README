@@ -1,0 +1,14 @@
+timesheet-service/
+ ├── pom.xml
+ ├── src/
+ │   ├── main/
+ │   │   ├── java/com/cloud/timesheet/
+ │   │   │   ├── TimesheetServiceApplication.java
+ │   │   │   ├── model/
+ │   │   │   │   └── Timesheet.java
+ │   │   │   ├── repository/
+ │   │   │   │   └── TimesheetRepository.java
+ │   │   │   └── controller/
+ │   │   │       └── TimesheetController.java
+ │   │   └── resources/
+ │   │       └── application.yml

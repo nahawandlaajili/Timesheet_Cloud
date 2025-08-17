@@ -62,6 +62,7 @@ Access Grafana local instance:
 
 Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
 # Grafana
+
 # - Install Grafana using Helm:
 #   ```bash
 #   helm repo add grafana https://grafana.github.io/helm-charts
