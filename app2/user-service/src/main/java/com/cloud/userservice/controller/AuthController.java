@@ -15,13 +15,12 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        if (authService.login(loginRequest.getemail(), loginRequest.getPassword())) {
-            return ResponseEntity.ok("Login successful! Redirect to home page...");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-        }
+@PostMapping("/login")
+public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    if (authService.login(loginRequest.getEmail(), loginRequest.getPassword())) {
+        return ResponseEntity.ok("Login successful! Redirect to home page...");
+    } else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
     }
 }
 

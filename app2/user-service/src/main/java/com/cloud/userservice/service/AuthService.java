@@ -21,6 +21,6 @@ public class AuthService {
 
       public boolean login(String email, String password) {
         // Hardcoded for testing
-        return "test@example.com".equals(email) && "password123".equals(password);
+        return "test@gmail.com".equals(email) && "password123".equals(password);
     }
 }
