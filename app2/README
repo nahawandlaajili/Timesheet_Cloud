@@ -140,3 +140,39 @@ docker run --name timesheetdb -e POSTGRES_USER=timesheet_service -e POSTGRES_PAS
    docker build -t nahawandl/timesheet-app:latest .
 2. Run the Docker container:
    docker run -p 8080:8080 nahawandl/timesheet-app  
+
+
+Backend Microservices (Spring Boot)
+
+Each service will have its own API endpoints:
+
+## Timesheet Service
+
+   GET /timesheet/{userId}
+
+   POST /timesheet
+
+## Vacation Service
+
+   POST /vacation
+
+   GET /vacation/{userId}
+
+## Leave Service
+
+   POST /leave
+
+   GET /leave/{userId}
+
+
+Database:
+
+   dashboarddb
+
+   users table
+
+   timesheet table
+
+   vacation table
+
+   leave table

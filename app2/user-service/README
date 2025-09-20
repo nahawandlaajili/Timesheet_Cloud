@@ -1,12 +1,20 @@
-# Readme page for User Service. 
-// 1. user-profile-service
-//    - Provides user profile information (Department, Job Role, Contract)
+User-profile-service
+This service is dedicated to manage employees & authentication. It Provides user profile information (Department, Job Role, Contract)
 
-## Backend Project Folder Structure 
+## 1. Backend Project Folder Structure 
 user-service/src/main/java/com/cloud/userservice/
+ ├── config/
+ │    └── WebConfig.java
  ├── controller/
  │    ├── AuthController.java
  │    └── UserProfileController.java
+ ├── dto/
+ │    ├── LoginRequest.java
+ │    ├── RegisterRequest.java
+ │    └── UserProfileDto.java
+ ├── exception/
+ │    ├── UserNotFoundException.java
+ │    └── GlobalExceptionHandler.java
  ├── model/
  │    └── UserProfile.java
  ├── repository/
@@ -15,6 +23,11 @@ user-service/src/main/java/com/cloud/userservice/
  │    ├── AuthService.java
  │    └── UserProfileService.java
  └── UserServiceApplication.java
+    └── pom.xml
+
+
+
+
 
 ## Frontend Project Folder Structure
 timesheet-frontend
@@ -32,7 +45,7 @@ timesheet-frontend
 
 
 ------------------------------------------------------------------------------------------
-# Postgres DB
+2. Postgres DB
 psql postgres 
 ## Create database
 CREATE DATABASE userdb;
@@ -80,3 +93,10 @@ docker run --name userdb -e POSTGRES_USER=user_service -e POSTGRES_PASSWORD=grgj
 http://localhost:8081/api/users
 http://localhost:8081/actuator/health
 http://localhost:8081/auth/login
+
+-----------------------------------------------------------------------------------------------------------
+CORS is set up so your React frontend can make requests.
+
+Errors are handled centrally with GlobalExceptionHandler.
+
+DTOs separate API payloads from your JPA entities.
