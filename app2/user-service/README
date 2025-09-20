@@ -2,29 +2,36 @@ User-profile-service
 This service is dedicated to manage employees & authentication. It Provides user profile information (Department, Job Role, Contract)
 
 ## 1. Backend Project Folder Structure 
-user-service/src/main/java/com/cloud/userservice/
- ├── config/
- │    └── WebConfig.java
- ├── controller/
- │    ├── AuthController.java
- │    └── UserProfileController.java
- ├── dto/
- │    ├── LoginRequest.java
- │    ├── RegisterRequest.java
- │    └── UserProfileDto.java
- ├── exception/
- │    ├── UserNotFoundException.java
- │    └── GlobalExceptionHandler.java
- ├── model/
- │    └── UserProfile.java
- ├── repository/
- │    └── UserProfileRepository.java
- ├── service/
- │    ├── AuthService.java
- │    └── UserProfileService.java
- └── UserServiceApplication.java
-    └── pom.xml
 
+user-service/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/cloud/userservice/
+│       │       ├── config/
+│       │       │   └── WebConfig.java
+│       │       ├── controller/
+│       │       │   ├── AuthController.java
+│       │       │   └── UserProfileController.java
+│       │       ├── dto/
+│       │       │   ├── LoginRequest.java
+│       │       │   ├── RegisterRequest.java
+│       │       │   └── UserProfileDto.java
+│       │       ├── exception/
+│       │       │   ├── UserNotFoundException.java
+│       │       │   └── GlobalExceptionHandler.java
+│       │       ├── model/
+│       │       │   └── UserProfile.java
+│       │       ├── repository/
+│       │       │   └── UserProfileRepository.java
+│       │       ├── service/
+│       │       │   ├── AuthService.java
+│       │       │   └── UserProfileService.java
+│       │       └── UserServiceApplication.java
+│       └── resources/
+│           └── application.yml
+├── pom.xml
+└── target/
 
 
 

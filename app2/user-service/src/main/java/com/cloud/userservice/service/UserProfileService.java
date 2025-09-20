@@ -33,7 +33,7 @@ public class UserProfileService {
         userRepo.deleteById(id);
     }
 
-    public Optional<UserProfile> findByName(String name) {
-        return userRepo.findByName(name);
+    public Optional<UserProfile> getByEmail(String email) {
+        return userRepo.findByEmail(email);
     }
 }
