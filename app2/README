@@ -4,6 +4,7 @@ This project is a microservices-based application designed to manage user profil
 1. user-profile-service
 - Provides user profile information (Department, Job Role, Contract)
 
+
 2. timesheet-service
 - Manages timesheet records
 
@@ -12,6 +13,7 @@ This project is a microservices-based application designed to manage user profil
 ✅ Dockerfile → wraps that JAR into a portable container image.
 ✅ You can run it with docker run and access it via localhost:8080.
 
+3. Leave service
 
 ## Project Structure Overview
  Each of the following microservices is structured as an independent Maven project.

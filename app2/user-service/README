@@ -50,11 +50,10 @@ psql postgres
 ## Create database
 CREATE DATABASE userdb;
 
-## Create user with password
-CREATE USER user_service WITH PASSWORD 'grgjUHI9';
+## Create user with password and Give privileges
 
-## Give privileges
-GRANT ALL PRIVILEGES ON DATABASE userdb TO user_service;
+CREATE USER root WITH PASSWORD 'grgjUHI9';
+GRANT ALL PRIVILEGES ON DATABASE dashboard_app TO root
 
 ## check all users 
 \du

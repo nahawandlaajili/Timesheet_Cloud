@@ -7,15 +7,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
 
-    private final UserProfileRepository userRepo;
+    // private final UserProfileRepository userRepo;
 
-    public AuthService(UserProfileRepository userRepo) {
-        this.userRepo = userRepo;
-    }
+    // public AuthService(UserProfileRepository userRepo) {
+    //     this.userRepo = userRepo;
+    // }
 
-    public boolean login(String name, String password) {
-        return userRepo.findByName(name)
-                       .map(user -> user.getPassword().equals(password)) // TODO: switch to passwordEncoder
-                       .orElse(false);
+//    public boolean login(String name, String password) {
+    //     return userRepo.findByName(name)
+    //                    .map(user -> user.getPassword().equals(password)) // TODO: switch to passwordEncoder
+    //                    .orElse(false);
+    // }
+
+      public boolean login(String email, String password) {
+        // Hardcoded for testing
+        return "test@example.com".equals(email) && "password123".equals(password);
     }
 }
