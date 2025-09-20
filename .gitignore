@@ -7,3 +7,7 @@
 Help.md
 mvnw
 mvnwd.cmd
+app
+### VS Code ###
+.vscode
+.idea/

@@ -15,21 +15,23 @@ public class AuthController {
         this.authService = authService;
     }
 
-@PostMapping("/login")
-public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-    if (authService.login(loginRequest.getEmail(), loginRequest.getPassword())) {
-        return ResponseEntity.ok("Login successful! Redirect to home page...");
-    } else {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        if (authService.login(loginRequest.getEmail(), loginRequest.getPassword())) {
+            return ResponseEntity.ok("Login successful! Redirect to home page...");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
     }
 }
 
+// Make sure this class is outside the controller and closed
 class LoginRequest {
     private String email;
     private String password;
 
-    public String getemail() { return email; }
-    public void setemail(String email) { this.email = email; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
