@@ -1,10 +1,11 @@
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/UserServiceApplication.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/config/WebConfig.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/controller/AuthController.java
+/Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/controller/HomeController.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/controller/UserProfileController.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/dto/LoginRequest.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/dto/RegisterRequest.java
-/Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/dto/UserProfileDTO.java
+/Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/dto/UserProfileDto.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/exception/GlobalExceptionHandler.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/exception/UserNotFoundException.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/model/ContractType.java

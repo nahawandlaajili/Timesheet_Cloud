@@ -5,8 +5,8 @@ spring:
     username: root
     password: grgjUHI9
     driver-class-name: org.postgresql.Driver
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  # autoconfigure:
+  #   exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   jpa:
     hibernate:
       ddl-auto: update

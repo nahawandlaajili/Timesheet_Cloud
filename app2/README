@@ -104,6 +104,9 @@ CREATE USER user_service WITH PASSWORD 'grgjUHI9';
 ## Give privileges
 GRANT ALL PRIVILEGES ON DATABASE userdb TO user_service;
 
+## Grant ownership to root user
+ALTER TABLE timesheets  OWNER TO root;
+
 ## exit
 \q
 
