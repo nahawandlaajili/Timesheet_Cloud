@@ -14,6 +14,10 @@ This project is a microservices-based application designed to manage user profil
 ✅ You can run it with docker run and access it via localhost:8080.
 
 3. Leave service
+4. Vacation service
+
+
+----------------------------------------------------------------------------------------------------
 
 ## Project Structure Overview
  Each of the following microservices is structured as an independent Maven project.
@@ -37,17 +41,6 @@ This project is a microservices-based application designed to manage user profil
  │   └── src/
  └── docker-compose.yml (optional)
  └── pom.xml (optional parent, packaging=pom)
-
-----------------------------------------------------------------------------------------------------------------------------------------
-## Tables
-User
-Employe
-Contrat - Contrat Type
-Department
-Entreprise 
-Mission - Mission Externe 
-Role (CHEF_DEPARTEMENT, ADMINISTRATEUR, INGENIEUR, TECHNICIEN) 
-Timeshhet - TimesheetPK
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -93,24 +86,7 @@ other steps
 mvn clean package -DskipTests
  or mvn spring-boot:run -DskipTests
  ----------------------------------------------------------------------------------------------------------------------------------------
-# Postgres DB
-psql postgres 
-## Create database
-CREATE DATABASE userdb;
 
-## Create user with password
-CREATE USER user_service WITH PASSWORD 'grgjUHI9';
-
-## Give privileges
-GRANT ALL PRIVILEGES ON DATABASE userdb TO user_service;
-
-## Grant ownership to root user
-ALTER TABLE timesheets  OWNER TO root;
-
-## exit
-\q
-
-------
 ## Build cmds
 
 1. mvn clean →  Clean old builds: Deletes the target/ folder (where compiled classes and JARs live).
@@ -135,11 +111,11 @@ user-service/target/user-service-1.0.0.jar
 docker login
 docker build -t nahawandl/timesheet-app:latest .
 docker build -t nahawandl/timesheet-app:latest 
---------------------------------------------------
+----------------------------------------------------------------------------------------------------
 Run postgres
 docker run --name userdb -e POSTGRES_USER=user_service -e POSTGRES_PASSWORD=password -e POSTGRES_DB=userdb -p 5432:5432 -d postgres:15
 docker run --name timesheetdb -e POSTGRES_USER=timesheet_service -e POSTGRES_PASSWORD=password -e POSTGRES_DB=timesheetdb -p 5433:5432 -d postgres:15
---------------------------------------------------
+----------------------------------------------------------------------------------------------------
 # To run the application with Docker:
 1. Build the Docker image:
    docker build -t nahawandl/timesheet-app:latest .
@@ -168,16 +144,3 @@ Each service will have its own API endpoints:
    POST /leave
 
    GET /leave/{userId}
-
-
-Database:
-
-   dashboarddb
-
-   users table
-
-   timesheet table
-
-   vacation table
-
-   leave table

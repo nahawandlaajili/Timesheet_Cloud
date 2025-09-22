@@ -1,14 +1,13 @@
 package com.cloud.userservice.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class HomeController {
 
-    // Forward all frontend routes ("/", "/login", etc.) to React index.html
-    @GetMapping({"/", "/login", "/{path:^(?!api$).*$}"})
-    public String index() {
-        return "forward:/index.html";
+    @GetMapping("/")
+    public String welcome() {
+        return "The user-service is up and running!";
     }
 }

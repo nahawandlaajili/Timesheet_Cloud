@@ -17,4 +17,5 @@ com/cloud/userservice/model/UserProfile.class
 com/cloud/userservice/service/UserProfileService.class
 com/cloud/userservice/exception/UserNotFoundException.class
 com/cloud/userservice/model/JobRole.class
+com/cloud/userservice/controller/LoginController.class
 com/cloud/userservice/controller/HomeController.class

@@ -2,6 +2,7 @@
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/config/WebConfig.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/controller/AuthController.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/controller/HomeController.java
+/Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/controller/LoginController.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/controller/UserProfileController.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/dto/LoginRequest.java
 /Users/nahawandlaajili/Documents/Repos/Timesheet_Cloud/app2/user-service/src/main/java/com/cloud/userservice/dto/RegisterRequest.java
