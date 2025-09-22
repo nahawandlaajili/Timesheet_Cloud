@@ -12,6 +12,8 @@ public class LoginController {
     // that does not start with "/api" to index.html.
     @GetMapping({"/login", "/{path:^(?!api$).*$}"})
     public String index() {
+
+
         return "this is login page";
     }
 }
