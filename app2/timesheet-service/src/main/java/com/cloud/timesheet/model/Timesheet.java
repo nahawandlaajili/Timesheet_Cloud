@@ -15,20 +15,26 @@ public class Timesheet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String employeeName;
+    private Long userId;
     private LocalDate date;
-    private int hoursWorked;
+    private Double hoursWorked;
+    private String description;
 
     // getters + setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getEmployeeName() { return employeeName; }
-    public void setEmployeeName(String employeeName) { this.employeeName = employeeName; }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
 
     public LocalDate getDate() { return date; }
     public void setDate(LocalDate date) { this.date = date; }
 
-    public int getHoursWorked() { return hoursWorked; }
-    public void setHoursWorked(int hoursWorked) { this.hoursWorked = hoursWorked; }
+    public Double getHoursWorked() { return hoursWorked; }
+    public void setHoursWorked(Double hoursWorked) { this.hoursWorked = hoursWorked; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }
+
+
