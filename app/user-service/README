@@ -1,0 +1,108 @@
+User-profile-service
+This service is dedicated to manage employees & authentication. It Provides user profile information (Department, Job Role, Contract)
+
+## 1. Backend Project Folder Structure 
+
+user-service/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/cloud/userservice/
+│       │       ├── config/
+│       │       │   └── WebConfig.java
+│       │       ├── controller/
+│       │       │   ├── AuthController.java
+│       │       │   └── UserProfileController.java
+│       │       ├── dto/
+│       │       │   ├── LoginRequest.java
+│       │       │   ├── RegisterRequest.java
+│       │       │   └── UserProfileDto.java
+│       │       ├── exception/
+│       │       │   ├── UserNotFoundException.java
+│       │       │   └── GlobalExceptionHandler.java
+│       │       ├── model/
+│       │       │   └── UserProfile.java
+│       │       ├── repository/
+│       │       │   └── UserProfileRepository.java
+│       │       ├── service/
+│       │       │   ├── AuthService.java
+│       │       │   └── UserProfileService.java
+│       │       └── UserServiceApplication.java
+│       └── resources/
+│           └── application.yml
+├── pom.xml
+└── target/
+
+
+
+
+## Frontend Project Folder Structure
+timesheet-frontend
+    ├── node_modules/
+    ├── public/
+    └── src
+        ├── App.css
+        ├── App.js
+        ├── index.css
+        └── index.js
+        └── login.js
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+
+
+------------------------------------------------------------------------------------------
+2. Postgres DB
+psql postgres 
+## Create database
+CREATE DATABASE userdb;
+
+## Create user with password and Give privileges
+
+CREATE USER root WITH PASSWORD 'grgjUHI9';
+GRANT ALL PRIVILEGES ON DATABASE dashboard_app TO root
+
+## check all users 
+\du
+
+## list tables
+\dt           
+
+## describe columns of the 'users' table
+\d users       
+
+## see all data
+SELECT * FROM users;  
+
+## exit
+\q
+
+------------------------------------------------------------------------------------------
+# build project
+mvn clean package
+
+# run project 
+mvn spring-boot:run
+ or java -jar target/user-profile-service-0.0.1-SNAPSHOT.jar
+
+
+# test api
+curl http://localhost:8081/api/user-profiles
+or http://localhost:8081/api/user-profiles 
+-------------
+Run postgres
+docker run --name userdb -e POSTGRES_USER=user_service -e POSTGRES_PASSWORD=grgjUHI -e POSTGRES_DB=userdb -p 5432:5432 -d postgres:15
+
+-----------------
+## urls
+
+http://localhost:8081/api/users
+http://localhost:8081/actuator/health
+http://localhost:8081/auth/login
+
+-----------------------------------------------------------------------------------------------------------
+CORS is set up so your React frontend can make requests.
+
+Errors are handled centrally with GlobalExceptionHandler.
+
+DTOs separate API payloads from your JPA entities.
