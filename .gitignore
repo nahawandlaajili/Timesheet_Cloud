@@ -3,6 +3,8 @@
 .project
 .settings
 .mvn
+.jar
+.class
 .springBeans
 Help.md
 mvnw
