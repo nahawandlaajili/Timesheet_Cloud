@@ -1,5 +1,5 @@
 User-profile-service
-This service is dedicated to manage employees & authentication. It Provides user profile information (Department, Job Role, Contract)
+This service manages employees & authentication. It now supports JWT-based login/signup.
 
 ## 1. Backend Project Folder Structure 
 
@@ -9,13 +9,15 @@ user-service/
 │       ├── java/
 │       │   └── com/cloud/userservice/
 │       │       ├── config/
-│       │       │   └── WebConfig.java
+│       │       │   ├── WebConfig.java
+│       │       │   └── SecurityConfig.java
 │       │       ├── controller/
 │       │       │   ├── AuthController.java
 │       │       │   └── UserProfileController.java
 │       │       ├── dto/
 │       │       │   ├── LoginRequest.java
 │       │       │   ├── RegisterRequest.java
+│       │       │   ├── AuthResponses.java
 │       │       │   └── UserProfileDto.java
 │       │       ├── exception/
 │       │       │   ├── UserNotFoundException.java
@@ -24,6 +26,10 @@ user-service/
 │       │       │   └── UserProfile.java
 │       │       ├── repository/
 │       │       │   └── UserProfileRepository.java
+│       │       ├── security/
+│       │       │   ├── CustomUserDetailsService.java
+│       │       │   ├── JwtAuthenticationFilter.java
+│       │       │   └── JwtUtil.java
 │       │       ├── service/
 │       │       │   ├── AuthService.java
 │       │       │   └── UserProfileService.java
@@ -81,24 +87,40 @@ SELECT * FROM users;
 # build project
 mvn clean package
 
-# run project 
+# run project
 mvn spring-boot:run
- or java -jar target/user-profile-service-0.0.1-SNAPSHOT.jar
+or java -jar target/user-service.jar
 
 
-# test api
-curl http://localhost:8081/api/user-profiles
-or http://localhost:8081/api/user-profiles 
+# JWT configuration (application.yml)
+security:
+  jwt:
+    secret: <base64-encoded 256-bit secret>
+    expiration-ms: 3600000
+
+# test APIs
+## signup
+curl -X POST http://localhost:8080/auth/signup \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Alice","email":"alice@example.com","password":"pass123"}'
+
+## login (receives JWT token)
+curl -X POST http://localhost:8080/auth/login \
+  -H 'Content-Type: application/json' \
+  -d '{"email":"alice@example.com","password":"pass123"}'
+
+## call protected endpoint
+TOKEN=$(curl -s -X POST http://localhost:8080/auth/login -H 'Content-Type: application/json' -d '{"email":"alice@example.com","password":"pass123"}' | jq -r .token)
+curl http://localhost:8080/api/user-profiles -H "Authorization: Bearer $TOKEN"
 -------------
 Run postgres
 docker run --name userdb -e POSTGRES_USER=user_service -e POSTGRES_PASSWORD=grgjUHI -e POSTGRES_DB=userdb -p 5432:5432 -d postgres:15
 
 -----------------
 ## urls
-
-http://localhost:8081/api/users
-http://localhost:8081/actuator/health
-http://localhost:8081/auth/login
+http://localhost:8080/api/user-profiles
+http://localhost:8080/actuator/health
+http://localhost:8080/auth/login
 
 -----------------------------------------------------------------------------------------------------------
 CORS is set up so your React frontend can make requests.

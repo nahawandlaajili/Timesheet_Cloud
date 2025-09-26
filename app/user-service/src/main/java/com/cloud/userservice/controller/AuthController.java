@@ -1,7 +1,12 @@
 package com.cloud.userservice.controller;
 
+import com.cloud.userservice.dto.AuthResponses.JwtResponse;
+import com.cloud.userservice.dto.IntrospectionRequest;
+import com.cloud.userservice.dto.IntrospectionResponse;
+import com.cloud.userservice.dto.LoginRequest;
+import com.cloud.userservice.dto.RegisterRequest;
+import com.cloud.userservice.model.UserProfile;
 import com.cloud.userservice.service.AuthService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,23 +21,20 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        if (authService.login(loginRequest.getEmail(), loginRequest.getPassword())) {
-            return ResponseEntity.ok("Login successful! Redirect to home page...");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-        }
+    public ResponseEntity<JwtResponse> login(@RequestBody LoginRequest loginRequest) {
+        String token = authService.authenticateAndGenerateToken(loginRequest.getEmail(), loginRequest.getPassword());
+        return ResponseEntity.ok(new JwtResponse(token));
     }
-}
 
-// Make sure this class is outside the controller and closed
-class LoginRequest {
-    private String email;
-    private String password;
+    @PostMapping("/signup")
+    public ResponseEntity<UserProfile> signup(@RequestBody RegisterRequest request) {
+        UserProfile created = authService.register(request);
+        return ResponseEntity.ok(created);
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    @PostMapping("/introspect")
+    public ResponseEntity<IntrospectionResponse> introspect(@RequestBody IntrospectionRequest request) {
+        IntrospectionResponse response = authService.introspectToken(request.getToken());
+        return ResponseEntity.ok(response);
+    }
 }

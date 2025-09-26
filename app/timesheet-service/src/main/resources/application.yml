@@ -14,3 +14,7 @@ server:
   port: 8081
 
 
+
+auth:
+  user-service:
+    url: http://localhost:7070
