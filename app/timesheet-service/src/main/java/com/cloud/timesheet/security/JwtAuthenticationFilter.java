@@ -30,35 +30,30 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        System.out.println("JWT Filter - Request URI: " + request.getRequestURI());
-        
+        // Skip JWT processing for public endpoints
+        String requestURI = request.getRequestURI();
+        if (requestURI.equals("/timesheets/health") || requestURI.startsWith("/actuator/") || requestURI.startsWith("/public/")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-        System.out.println("JWT Filter - Auth Header: " + authHeader);
-        
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            System.out.println("JWT Filter - No valid auth header, proceeding without authentication");
             filterChain.doFilter(request, response);
             return;
         }
 
         final String token = authHeader.substring(7);
-        System.out.println("JWT Filter - Extracted token: " + token.substring(0, Math.min(20, token.length())) + "...");
         
         if (SecurityContextHolder.getContext().getAuthentication() == null) {
             IntrospectionResponse introspectionResponse = 
                 tokenIntrospectionService.introspectToken(token);
-            
-            System.out.println("JWT Filter - Introspection active: " + introspectionResponse.isActive());
-            System.out.println("JWT Filter - Username: " + introspectionResponse.getUsername());
             
             if (introspectionResponse.isActive() && introspectionResponse.getUsername() != null) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         introspectionResponse.getUsername(), null, List.of(new SimpleGrantedAuthority("ROLE_USER")));
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
-                System.out.println("JWT Filter - Authentication set successfully");
-            } else {
-                System.out.println("JWT Filter - Authentication failed");
             }
         }
 
