@@ -1,7 +1,9 @@
-
+import './timesheet_management_styles.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './timesheet_management_styles.css';
+
+const api = axios.create({ baseURL: 'http://localhost:8081' });
+
 
 const Timesheets = () => {
   const [timesheets, setTimesheets] = useState([]);
@@ -21,7 +23,7 @@ const Timesheets = () => {
   const fetchTimesheets = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/timesheets');
+      const response = await api.get('/timesheets');
       setTimesheets(response.data);
       setError(null);
     } catch (err) {
@@ -43,7 +45,7 @@ const Timesheets = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/timesheets', newTimesheet);
+      const response = await api.post('/timesheets', newTimesheet);
       setTimesheets([...timesheets, response.data]);
       // Reset form
       setNewTimesheet({
