@@ -1,4 +1,4 @@
-# Maven
+ data# Maven
 target/
 **/target/
 pom.xml.tag
@@ -71,6 +71,7 @@ pids
 
 # Node modules (for frontend)
 node_modules/
+package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

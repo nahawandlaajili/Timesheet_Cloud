@@ -154,6 +154,17 @@ class AuthService {
     async getUserTimesheets(userId) {
         return this.apiCall(`/timesheets/user/${userId}`);
     }
+
+    // Dashboard-specific API methods
+    async getDashboardData() {
+        const currentUser = this.getCurrentUser();
+        if (!currentUser) {
+            throw new Error('No current user found');
+        }
+        
+        // Get user's timesheets for dashboard
+        return this.getUserTimesheets(currentUser.userId);
+    }
 }
 
 // Create and export a singleton instance
