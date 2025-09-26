@@ -29,3 +29,12 @@ server:
   #       dialect: org.hibernate.dialect.MySQL8Dialect
   # application:
   #   name: user-profile-service
+
+security:
+  jwt:
+    # IMPORTANT: Replace with a strong base64-encoded 256-bit secret in production
+    # Generate with: openssl rand -base64 32
+    secret: ${JWT_SECRET:YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY3ODkwYWJjZGVmZ2hpams=}
+    expiration-ms: ${JWT_EXPIRATION_MS:3600000} # 1 hour
+    issuer: user-service
+    audience: timesheet-cloud
