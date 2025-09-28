@@ -1,49 +1,71 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: timesheet-ingress
-  namespace: app
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+ name: dashboard-ingress
+ namespace: apps
+ annotations:
+   traefik.ingress.kubernetes.io/router.tls: "true"  # Ensure TLS is enabled
 spec:
-  ingressClassName: nginx
-  rules:
-    - host: timesshet.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: timesheet-svc
-                port:
-                  number: 80
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  name: user-dashboard-ingress
-#  namespace: apps
-#  annotations:
-#    traefik.ingress.kubernetes.io/router.tls: "true"  # Ensure TLS is enabled
-#spec:
-#  ingressClassName: traefik
-#  rules:
-#  - host: user-dash.com
-#    http:
-#      paths:
-#      - path: /
-#        pathType: Prefix
-#        backend:
-#          service:
-#            name: user-dash-svc
-#            port:
-#              number: 443  # Your service must expose 443
-#  tls:
-#  - hosts:
-#    - user-dash.com
-#    secretName: user-dashboard-tls  # This must exist
-#    ---
+ ingressClassName: traefik
+ rules:
+ - host: timesheet.com
+   http:
+     paths:
+     - path: /*
+       pathType: Prefix
+       backend:
+         service:
+           name: user-dash-svc
+           port:
+             number: 443  # Your service must expose 443
+    - path: /user
+      pathType: Prefix
+      backend:
+        service:
+          name: user-dash-svc
+          port:
+            number: 443  # Your service must expose 443
+    - path: /timesheet
+      pathType: Prefix
+      backend:
+        service:
+          name: timesheet-svc
+          port:
+            number: 80  # Your service must expose 80
+    - path: /leave
+      pathType: Prefix
+      backend:
+        service:
+          name: leave-svc
+          port:
+            number: 80  # Your service must expose 80
+      
+ tls:
+ - hosts:
+   - user-dash.com
+   secretName: dashboard-tls  # This must exist
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: timesheet-ingress
+#   namespace: app
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - host: timesshet.com
+#       http:
+#         paths:
+#           - path: /timesheet
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: timesheet-svc
+#                 port:
+#                   number: 80
+---
 #      apiVersion: networking.k8s.io/v1
 #  kind: Ingress
 #  metadata:

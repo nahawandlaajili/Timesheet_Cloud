@@ -26,6 +26,8 @@ public class UserProfile {
 
     private String address;
 
+    private int remainingDaysOff = 30;
+
     @Column(nullable = false)
     private String password;
 
@@ -37,4 +39,12 @@ public class UserProfile {
 
     @Enumerated(EnumType.STRING)
     private ContractType contractType;
+
+    public int getRemainingDaysOff() {
+        return remainingDaysOff;
+    }
+
+    public void setRemainingDaysOff(int remainingDaysOff) {
+        this.remainingDaysOff = remainingDaysOff;
+    }
 }

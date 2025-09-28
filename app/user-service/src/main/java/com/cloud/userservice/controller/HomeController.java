@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String welcome() {
-        return "The user-service is up and running!";
+        return "Welcome to user-service. The service is up and running!";
     }
 }

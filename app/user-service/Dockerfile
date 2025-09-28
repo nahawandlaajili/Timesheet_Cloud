@@ -15,5 +15,5 @@ EXPOSE 8080
 # Run the jar file
 ENTRYPOINT ["java","-jar","/app.jar"]
 
-docker build -t user-service:1.0.0 .
-docker run -p 8080:8080 user-service:1.0.0
+#docker build -t user-service:1.0.0 .
+#docker run -p 8080:8080 user-service:1.0.0

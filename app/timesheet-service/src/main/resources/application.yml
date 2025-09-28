@@ -1,6 +1,7 @@
+# timesheet-service/src/main/resources/application.yml
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/timesheetdb
+    url: jdbc:postgresql://localhost:5432/dashboard_app
     username: timesheet_user
     password: rootpwd
     driver-class-name: org.postgresql.Driver
@@ -9,12 +10,18 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
 server:
   port: 8081
 
-
-
 auth:
-  user-service:
+  timesheet-service:
     url: http://localhost:7070
+
+# security:
+#   jwt:
+#     # IMPORTANT: Replace with a strong base64-encoded 256-bit secret in production
+#     # Generate with: openssl rand -base64 32
+#     secret: ${JWT_SECRET:YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY3ODkwYWJjZGVmZ2hpams=}
+#     expiration-ms: ${JWT_EXPIRATION_MS:3600000} # 1 hour
+#     issuer: user-service
+#     audience: timesheet-cloud

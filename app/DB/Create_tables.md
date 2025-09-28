@@ -1,16 +1,39 @@
 # Postgres DB
+
+## connect to postgres 
+psql -U nahawandlaajili -d dashboard_app
+
 psql postgres 
 ## Create database
-CREATE DATABASE userdb;
+CREATE DATABASE Dashboard_app;
 
 ## Create user with password
 CREATE USER user_service WITH PASSWORD 'grgjUHI9';
 
-## Give privileges
-GRANT ALL PRIVILEGES ON DATABASE userdb TO user_service;
+CREATE USER timesheet_user WITH PASSWORD 'rootpwd';
 
+## Give privileges
+GRANT ALL PRIVILEGES ON DATABASE dashboard_app TO user_service;
+
+GRANT ALL PRIVILEGES ON DATABASE dashboard_app TO timesheet_user;
 ## Grant ownership to root user
 ALTER TABLE timesheets  OWNER TO root;
+
+
+## Tables list
+\dt
+
+
+-- replace your_user with the username in application.properties
+GRANT USAGE ON SCHEMA public TO timesheet_user
+GRANT CREATE ON SCHEMA public TO your_user;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+GRANT ALL ON TABLES TO timesheet_user
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+GRANT ALL ON SEQUENCES TO timesheet_user;
+
+
+
 
 ## exit
 \q
@@ -35,10 +58,11 @@ Database:
     password VARCHAR(255) NOT NULL,
     role VARCHAR(50) DEFAULT 'employee',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    remaining_days_off INT DEFAULT 30;
 );
 
 
-CREATE TABLE timesheets (
+CREATE TABLE timesheet (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     work_date DATE NOT NULL,
@@ -58,9 +82,9 @@ CREATE TABLE vacations (
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     status VARCHAR(20) DEFAULT 'pending', -- pending, approved, rejected
-    reason TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    days_requested INT NOT NULL,
 );
 
 

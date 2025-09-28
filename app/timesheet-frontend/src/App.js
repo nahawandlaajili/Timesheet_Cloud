@@ -6,6 +6,9 @@ import Login from './login';
 import Signup from './signup';
 import Timesheets from './timesheets_component';
 import authService from './authService';
+import LeaveRequestForm from "./LeaveRequestForm";
+import MyLeaves from "./MyLeaves";
+import AdminLeaveRequests from "./AdminLeaveRequests";
 
 function Navigation() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,7 +41,7 @@ function Navigation() {
 
     return (
         <header className="App-header">
-            <h1>Timesheet Cloud</h1>
+            <h1>Timesheet</h1>
             <nav>
                 <ul>
                     {isAuthenticated ? (
@@ -77,6 +80,8 @@ function Navigation() {
 }
 
 function App() {
+    const userId = 1; // TODO: Replace with logged-in user from auth
+
     return (
         <Router>
             <div className="App">
@@ -87,6 +92,9 @@ function App() {
                         <Route path="/timesheets" element={<Timesheets />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
+                        <Route path="/request-leave" element={<LeaveRequestForm userId={userId} />} />
+                        <Route path="/my-leaves" element={<MyLeaves userId={userId} />} />
+                        <Route path="/admin/leaves" element={<AdminLeaveRequests />} />
                     </Routes>
                 </main>
                 <footer>

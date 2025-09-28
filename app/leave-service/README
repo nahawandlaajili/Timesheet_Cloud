@@ -1,1 +1,46 @@
-This service is dedicated to manage vacation/sick requests. 
+This service is dedicated to manage vacation/sick requests.
+
+Employee hits POST /api/leaves/request?userId=1&startDate=2025-10-01&endDate=2025-10-05
+
+Service checks if user has enough remaining days.
+
+If yes → creates a leave request, approves it, reduces days left.
+
+Employee can view all his leaves at GET /api/leaves/user/{userId}.
+---
+
+Instead of auto-approving inside LeaveService, we’ll separate:
+
+Employee Request → status = PENDING (no deduction yet).
+
+Admin Approves → status = APPROVED (deduction happens).
+
+Admin Rejects → status = REJECTED (no deduction).
+
+---
+approval flow
+
+Flow Example
+
+Employee:
+POST /api/leaves/request?userId=1&startDate=2025-10-01&endDate=2025-10-05
+→ Creates request, status = PENDING.
+
+Admin:
+
+PUT /api/leaves/10/approve → Status = APPROVED, user’s days reduced.
+
+PUT /api/leaves/10/reject → Status = REJECTED, no deduction.
+
+---
+API
+
+/api/leaves/request → employee submits a request.
+
+/api/leaves/{leaveId}/approve → admin approves a request.
+
+/api/leaves/{leaveId}/reject → admin rejects a request.
+
+/api/leaves → list all requests (for admin).
+
+/api/leaves/user/{userId} → view a specific user’s leave requests.
