@@ -1,1 +1,10 @@
 https://www.cloudoptimo.com/blog/kubernetes-for-ci-cd-a-complete-guide-for-2025/
+
+
+include:
+- SonarQube (analyse qualite)
+- Nexus (entrepot des dependances)
+- GitLeaks (secret scanning)
+- OWSAP ZAP (detection des vulnerabilites applicatives avant mise en production)
+- cosign (signature et verification systematiques des images)
+- Trivy, Grype, Syft (scan automatique des contenaires
