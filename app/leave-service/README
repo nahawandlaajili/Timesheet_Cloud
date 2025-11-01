@@ -1,6 +1,23 @@
 This service is dedicated to manage vacation/sick requests.
 
+leave-service/
+ └── src/main/java/com/cloud/leaveservice/
+     ├── controller/
+     │   └── LeaveController.java
+     ├── service/
+     │   └── LeaveService.java
+     ├── repository/
+     │   └── LeaveRequestRepository.java
+     ├── model/
+     │   └── LeaveRequest.java
+     ├── dto/
+     │   ├── LeaveRequestDTO.java
+     │   └── LeaveApprovalDTO.java
+     └── LeaveServiceApplication.java
+
+
 Employee hits POST /api/leaves/request?userId=1&startDate=2025-10-01&endDate=2025-10-05
+POST /api/leaves/request?userId=1&startDate=2025-10-01&endDate=2025-10-05
 
 Service checks if user has enough remaining days.
 
@@ -14,6 +31,7 @@ Instead of auto-approving inside LeaveService, we’ll separate:
 Employee Request → status = PENDING (no deduction yet).
 
 Admin Approves → status = APPROVED (deduction happens).
+PUT /api/leaves/10/approve
 
 Admin Rejects → status = REJECTED (no deduction).
 
@@ -44,3 +62,13 @@ API
 /api/leaves → list all requests (for admin).
 
 /api/leaves/user/{userId} → view a specific user’s leave requests.
+
+
+frontendsrc/
+ ├── components/
+ │    ├── LeaveRequestForm.jsx
+ │    ├── LeaveList.jsx
+ │    └── AdminLeaveList.jsx
+ ├── api/
+ │    └── leaveService.js
+ └── App.jsx
