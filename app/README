@@ -11,7 +11,7 @@ This project is a microservices-based application designed to manage user profil
 ✅ Each microservice has its own pom.xml.
 ✅ mvn clean package → produces an executable JAR: Each service can be packaged and deployed separately.
 ✅ Dockerfile → wraps that JAR into a portable container image.
-✅ You can run it with docker run and access it via localhost:8080.
+✅ You can run it with docker run and access it via localhost:8081.
 
 3. Leave service
 4. Vacation service
@@ -133,14 +133,14 @@ Each service will have its own API endpoints:
 
    POST /timesheet
 
-## Vacation Service
-
-   POST /vacation
-
-   GET /vacation/{userId}
-
 ## Leave Service
 
    POST /leave
 
    GET /leave/{userId}
+
+## Sickness Service
+
+   POST /vacation
+
+   GET /vacation/{userId}

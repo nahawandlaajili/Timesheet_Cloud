@@ -1,3 +1,5 @@
+https://medium.com/@chapunchi/argocd-first-steps-628561378cc2
+
 ArgoCD is a declarative, GitOps-based continuous delivery tool for Kubernetes. It automates the synchronization of applications in Kubernetes clusters by tracking the desired state defined in a Git repository.
 
 A multi-cluster deployment refers to deploying applications across multiple Kubernetes clusters, enabling high availability, disaster recovery, and optimized resource utilization. For organizations using AWS, EKS provides a fully managed Kubernetes environment, and with ArgoCD, multi-cluster management becomes streamlined and automated.
@@ -6,6 +8,8 @@ A multi-cluster deployment refers to deploying applications across multiple Kube
 kubectl create namespace argocd
 
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+brew install argocd
 
 Access the ArgoCD UI:
 To access the ArgoCD web UI, set up port forwarding:

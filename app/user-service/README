@@ -39,24 +39,6 @@ user-service/
 ├── pom.xml
 └── target/
 
-
-
-
-## Frontend Project Folder Structure
-timesheet-frontend
-    ├── node_modules/
-    ├── public/
-    └── src
-        ├── App.css
-        ├── App.js
-        ├── index.css
-        └── index.js
-        └── login.js
-    ├── package-lock.json
-    ├── package.json
-    ├── README.md
-
-
 ------------------------------------------------------------------------------------------
 2. Postgres DB
 psql postgres 
