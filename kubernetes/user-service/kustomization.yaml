@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: kustomization
+metadata:
+  name: user-kustomazation
+  labels:
+    app: user-timesheet
+    env: test
+    component: user
