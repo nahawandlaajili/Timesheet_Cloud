@@ -1,44 +1,55 @@
-import React, { useState } from "react";
-import axios from "axios";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function LeaveRequestForm({ userId }) {
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const [message, setMessage] = useState("");
+  const [formData, setFormData] = useState({
+    startDate: '',
+    endDate: '',
+    reason: ''
+  });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await axios.post("/api/leaves/request", null, {
-                params: {
-                    userId,
-                    startDate: startDate.toISOString().split("T")[0],
-                    endDate: endDate.toISOString().split("T")[0],
-                },
-            });
-            setMessage("Leave request submitted: " + res.data.status);
-        } catch (err) {
-            setMessage("Error: " + err.response?.data?.message || err.message);
-        }
-    };
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
-    return (
-        <div>
-            <h2>Request Leave</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Start Date:</label>
-                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-                <br />
-                <label>End Date:</label>
-                <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-                <br />
-                <button type="submit">Submit Request</button>
-            </form>
-            {message && <p>{message}</p>}
-        </div>
-    );
+  const handleSubmit = async e => { // <-- async here
+    e.preventDefault();
+    try {
+      const response = await axios.post(`https://localhost:8082/api/leaves/blabla`, {
+        userId,
+        startDate: formData.startDate,
+        endDate: formData.endDate
+      },
+          {
+            withCredentials: true // <-- this is the key
+          });
+      console.log('Leave request submitted:', response.data);
+      alert('Leave request submitted!');
+      setFormData({ startDate: '', endDate: '', reason: '' });
+    } catch (error) {
+      console.error('Leave request error:', error.response?.data || error.message);
+      alert('Error submitting leave request.');
+    }
+  };
+
+  return (
+    <div className="leave-form">
+      <h2>Request Leave</h2>
+      <form onSubmit={handleSubmit}>
+        <label>Start Date:</label>
+        <input type="date" name="startDate" value={formData.startDate} onChange={handleChange} required />
+
+        <label>End Date:</label>
+        <input type="date" name="endDate" value={formData.endDate} onChange={handleChange} required />
+
+        <label>Reason:</label>
+        <textarea name="reason" value={formData.reason} onChange={handleChange} required />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 }
 
 export default LeaveRequestForm;
