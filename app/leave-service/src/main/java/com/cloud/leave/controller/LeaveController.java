@@ -1,55 +1,62 @@
-package com.cloud.userservice.controller;
+package com.cloud.leaveservice.controller;
 
-import com.cloud.userservice.model.LeaveRequest;
-import com.cloud.userservice.service.LeaveService;
-import org.springframework.http.ResponseEntity;
+import com.cloud.leaveservice.model.LeaveRequest;
+import com.cloud.leaveservice.service.LeaveService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+
+import java.time.LocalDate;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/leaves")
-public class LeaveRequestController {
+public class LeaveController {
 
     private final LeaveService leaveService;
+    private static final Logger logger = LoggerFactory.getLogger(LeaveController.class);
 
-    public LeaveRequestController(LeaveService leaveService) {
+    public LeaveController(LeaveService leaveService) {
         this.leaveService = leaveService;
     }
 
-    // Employee submits leave request
     @PostMapping("/request")
-    public ResponseEntity<LeaveRequest> requestLeave(
-            @RequestParam Long userId,
-            @RequestParam String startDate,
-            @RequestParam String endDate) {
-        LeaveRequest leave = leaveService.requestLeave(userId, startDate, endDate);
-        return ResponseEntity.ok(leave);
+    public ResponseEntity<?> requestLeave(@RequestParam Long userId,
+                                          @RequestParam String startDate,
+                                          @RequestParam String endDate) {
+        try {
+            LeaveRequest leaveRequest = leaveService.requestLeave(userId,
+                    LocalDate.parse(startDate),
+                    LocalDate.parse(endDate));
+            return ResponseEntity.ok(leaveRequest);
+        } catch (Exception e) {
+            logger.error("Failed to submit leave request", e); // <-- log the stack trace
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error submitting leave request.");
+        }
     }
 
-    // Admin approves leave
+
     @PutMapping("/{leaveId}/approve")
-    public ResponseEntity<LeaveRequest> approveLeave(@PathVariable Long leaveId) {
-        LeaveRequest leave = leaveService.approveLeave(leaveId);
-        return ResponseEntity.ok(leave);
+    public LeaveRequest approveLeave(@PathVariable Long leaveId) {
+        return leaveService.approveLeave(leaveId);
     }
 
-    // Admin rejects leave
     @PutMapping("/{leaveId}/reject")
-    public ResponseEntity<LeaveRequest> rejectLeave(@PathVariable Long leaveId) {
-        LeaveRequest leave = leaveService.rejectLeave(leaveId);
-        return ResponseEntity.ok(leave);
+    public LeaveRequest rejectLeave(@PathVariable Long leaveId) {
+        return leaveService.rejectLeave(leaveId);
     }
 
-    // Get all leave requests (admin can view)
     @GetMapping
-    public ResponseEntity<List<LeaveRequest>> getAllLeaves() {
-        return ResponseEntity.ok(leaveService.getAllLeaves());
+    public List<LeaveRequest> getAllLeaves() {
+        return leaveService.getAllLeaves();
     }
 
-    // Get leave requests by user
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<LeaveRequest>> getLeavesByUser(@PathVariable Long userId) {
-        return ResponseEntity.ok(leaveService.getLeavesByUser(userId));
+    public List<LeaveRequest> getUserLeaves(@PathVariable Long userId) {
+        return leaveService.getUserLeaves(userId);
     }
 }

@@ -1,0 +1,29 @@
+# leaveervice/src/main/resources/application.yml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dashboard_app
+    username: root
+    password: grgjUHI9
+    driver-class-name: org.postgresql.Driver
+  # autoconfigure:
+  # exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 8082
+
+logging:
+  level:
+    com.cloud.leaveservice: DEBUG
+    org.springframework.web: DEBUG
+
+# security:
+#   jwt:
+#     # IMPORTANT: Replace with a strong base64-encoded 256-bit secret in production
+#     # Generate with: openssl rand -base64 32
+#     secret: ${JWT_SECRET:YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY3ODkwYWJjZGVmZ2hpams=}
+#     expiration-ms: ${JWT_EXPIRATION_MS:3600000} # 1 hour
+#     issuer: user-service
+#     audience: timesheet-cloud

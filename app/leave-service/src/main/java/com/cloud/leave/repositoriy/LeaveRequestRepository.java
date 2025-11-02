@@ -1,6 +1,6 @@
-package com.cloud.userservice.repository;
+package com.cloud.leaveservice.repository;
+import com.cloud.leaveservice.model.LeaveRequest;
 
-import com.cloud.userservice.model.LeaveRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

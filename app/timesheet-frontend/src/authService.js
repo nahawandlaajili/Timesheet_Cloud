@@ -3,6 +3,7 @@ class AuthService {
     constructor() {
         this.baseURL = 'http://localhost:7070'; // User service URL
         this.timesheetURL = 'http://localhost:8081'; // Timesheet service URL
+        this.leaveURL = 'http://localhost:8082'; // Leeave service URL
     }
 
     // Store token in localStorage
