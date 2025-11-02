@@ -18,6 +18,10 @@ logging:
   level:
     com.cloud.leaveservice: DEBUG
     org.springframework.web: DEBUG
+auth:
+  timesheet-service:
+    url: http://localhost:7070
+
 
 # security:
 #   jwt:

@@ -16,7 +16,7 @@ function LeaveRequestForm({ userId }) {
   const handleSubmit = async e => { // <-- async here
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:8082/api/LeaveService`, {
+      const response = await axios.post(`http://localhost:8082/api/leaves/request`, {
         userId,
         startDate: formData.startDate,
         endDate: formData.endDate
