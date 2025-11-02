@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: kustomization
+namespace: app
+metadata:
+  name: timesheet-kustomzation
+  labels:
+    app: timeshhet
+    env: test
+    component: timesheet 

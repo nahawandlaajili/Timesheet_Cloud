@@ -1,5 +1,20 @@
 # Getting Started with Create React App
 
+## Frontend Project Folder Structure
+timesheet-frontend
+├── node_modules/
+├── public/
+└── src
+├── App.css
+├── App.js
+├── index.css
+└── index.js
+└── login.js
+├── package-lock.json
+├── package.json
+├── README.md
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -17,4 +32,3 @@ You may also see any lint errors in the console.
 ### `npm test`
 
 ### `npm run build`
-
