@@ -1,19 +1,19 @@
 This service is dedicated to manage vacation/sick requests.
-
 leave-service/
- └── src/main/java/com/cloud/leaveservice/
-     ├── controller/
-     │   └── LeaveController.java
-     ├── service/
-     │   └── LeaveService.java
-     ├── repository/
-     │   └── LeaveRequestRepository.java
-     ├── model/
-     │   └── LeaveRequest.java
-     ├── dto/
-     │   ├── LeaveRequestDTO.java
-     │   └── LeaveApprovalDTO.java
-     └── LeaveServiceApplication.java
+ ├── src/main/java/com/cloud/leaveservice/
+ │    ├── controller/
+ │    │    └── LeaveController.java
+ │    ├── dto/
+ │    │    └── LeaveRequestDTO.java
+ │    ├── model/
+ │    │    └── LeaveRequest.java
+ │    ├── repository/
+ │    │    └── LeaveRequestRepository.java
+ │    ├── service/
+ │    │    └── LeaveService.java
+ │    └── LeaveServiceApplication.java
+ └── src/main/resources/
+      └── application.yml
 
 
 Employee hits POST /api/leaves/request?userId=1&startDate=2025-10-01&endDate=2025-10-05
