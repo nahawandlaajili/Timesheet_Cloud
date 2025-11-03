@@ -33,7 +33,7 @@ public class SecurityConfig {
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("OPTIONS", "/**").permitAll()
-                .requestMatchers("/actuator/**", "/timesheets/health", "/public/**", "/error").permitAll()
+                .requestMatchers("/actuator/**", "/api/leaves/health", "/public/**", "/error").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -56,6 +56,6 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
-                .requestMatchers("/public/**", "/api/leaves/**", "/actuator/**", "/api/leaves/request");
+                .requestMatchers("/public/**", "/api/leaves/health", "/actuator/**");
     }
 }

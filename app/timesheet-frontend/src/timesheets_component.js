@@ -41,7 +41,7 @@ const Timesheets = () => {
   const testConnection = async () => {
     try {
       await authService.testConnection();
-      fetchTimesheets();
+    fetchTimesheets();
     } catch (error) {
       console.error('Connection test failed:', error);
       setError(`Connection failed: ${error.message}`);
@@ -60,7 +60,7 @@ const Timesheets = () => {
       if (err.message.includes('Authentication failed')) {
         navigate('/login');
       } else {
-        setError('Failed to fetch timesheets. Please try again later.');
+      setError('Failed to fetch timesheets. Please try again later.');
       }
     } finally {
       setLoading(false);
@@ -93,7 +93,7 @@ const Timesheets = () => {
       if (err.message.includes('Authentication failed')) {
         navigate('/login');
       } else {
-        setError('Failed to create timesheet. Please try again.');
+      setError('Failed to create timesheet. Please try again.');
       }
     }
   };
@@ -109,7 +109,7 @@ const Timesheets = () => {
   return (
     <div className="timesheets-container">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <h2>Timesheets</h2>
+      <h2>Timesheets</h2>
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
           {currentUser && (
             <span>Welcome, {currentUser.name}!</span>

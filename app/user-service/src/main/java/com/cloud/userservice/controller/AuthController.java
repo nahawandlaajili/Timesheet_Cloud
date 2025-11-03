@@ -30,7 +30,7 @@ public class AuthController {
     public ResponseEntity<UserProfile> signup(@RequestBody RegisterRequest request) {
         UserProfile created = authService.register(request);
         return ResponseEntity.ok(created);
-    }
+        }
 
     @PostMapping("/introspect")
     public ResponseEntity<IntrospectionResponse> introspect(@RequestBody IntrospectionRequest request) {

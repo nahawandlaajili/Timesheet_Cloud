@@ -23,7 +23,7 @@ function LoginPage() {
 
         try {
             await authService.login(email, password);
-            setMessage("Login successful!");
+                setMessage("Login successful!");
             navigate("/timesheets");
         } catch (error) {
             setMessage(error.message || "Login failed");

@@ -19,7 +19,7 @@ logging:
     com.cloud.leaveservice: DEBUG
     org.springframework.web: DEBUG
 auth:
-  timesheet-service:
+  user-service:
     url: http://localhost:7070
 
 

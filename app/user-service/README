@@ -87,7 +87,7 @@ SELECT * FROM users;
 # build project
 mvn clean package
 
-# run project
+# run project 
 mvn spring-boot:run
 or java -jar target/user-service.jar
 

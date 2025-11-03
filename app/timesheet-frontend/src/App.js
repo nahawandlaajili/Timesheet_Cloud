@@ -8,7 +8,7 @@ import Login from './login';
 import Signup from './signup';
 import Profile from './Profile';
 import Timesheets from './timesheets_component';
-import LeaveRequestForm from './components/LeaveRequestForm';
+import LeaveRequestForm from './LeaveRequestForm';
 import MyLeaves from './MyLeaves';
 import AdminLeaveRequests from './AdminLeaveRequests';
 
