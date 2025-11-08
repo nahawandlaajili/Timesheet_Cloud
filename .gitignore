@@ -89,12 +89,13 @@ Help.md
 mvnw
 mvnw.cmd
 
+# Kubernetes secrets
 kubernetes/secret.yaml
 
 .idea/
 .vscode/
 
-DEVOPS:INFRASTRUCTURE_AUDI:md
-PROJECT_AUDIT:REPORT.md
+README.md
 roadmap.md
-installations.md
+installations.md    
+DESIGN_DOCS.md
