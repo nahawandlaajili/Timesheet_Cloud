@@ -1,4 +1,4 @@
-package com.cloud.leaveservice.controller;
+package com.cloud.leave.controller;
 
 import com.cloud.leaveservice.model.LeaveRequest;
 import com.cloud.leaveservice.service.LeaveService;
@@ -59,5 +59,11 @@ public class LeaveController {
     @GetMapping("/user/{userId}")
     public List<LeaveRequest> getUserLeaves(@PathVariable Long userId) {
         return leaveService.getUserLeaves(userId);
+    }
+
+    // Health check endpoint
+    @GetMapping("/health")
+    public String health() {
+        return "Leave service is running";
     }
 }
