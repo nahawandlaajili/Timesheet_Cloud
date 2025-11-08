@@ -88,3 +88,8 @@ app2
 Help.md
 mvnw
 mvnw.cmd
+
+kubernetes/secret.yaml
+
+.idea/
+.vscode/

@@ -2,53 +2,71 @@ version: '3.8'
 
 services:
 
-  mysql:
-    image: mysql:8.0
-    container_name: mysql-db
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: userdb
+      POSTGRES_USER: timesheet_user
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dashboard_app
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - postgres-data:/var/lib/postgresql/data
 
-  user-profile-service:
-    build: ./user-profile-service
-    container_name: user-profile-service
+  user-service:
+    build: ./user-service
+    container_name: user-service
     restart: always
     ports:
-      - "8081:8081"
+      - "7070:7070"
     depends_on:
-      - mysql
+      - postgres
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/userdb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/dashboard_app
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: rootpassword
+      SPRING_DATASOURCE_PASSWORD: grgjUHI9
+      SERVER_PORT: 7070
 
   timesheet-service:
     build: ./timesheet-service
     container_name: timesheet-service
     restart: always
     ports:
-      - "8082:8082"
+      - "7071:7071"
     depends_on:
-      - mysql
+      - postgres
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/userdb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/dashboard_app
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: rootpassword
+      SPRING_DATASOURCE_PASSWORD: grgjUHI9
+      SERVER_PORT: 7071
+
+  leave-service:
+    build: ./leave-service
+    container_name: leave-service
+    restart: always
+    ports:
+      - "7072:7072"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/dashboard_app
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: grgjUHI9
+      SERVER_PORT: 7072
 
   frontend:
-    build: ./frontend
+    build: ./timesheet-frontend
     container_name: dashboard-frontend
     restart: always
     ports:
       - "3000:3000"
     depends_on:
-      - user-profile-service
+      - user-service
       - timesheet-service
+      - leave-service
 
 volumes:
-  mysql-data:
+  postgres-data:

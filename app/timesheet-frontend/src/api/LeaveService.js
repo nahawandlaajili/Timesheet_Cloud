@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://localhost:8082/api/leaves";
+const API_BASE_URL = "http://localhost:7072/api/leaves";
 
 export const requestLeave = (userId, startDate, endDate) =>
   axios.post(`${API_BASE_URL}/request`, { userId, startDate, endDate },

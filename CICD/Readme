@@ -8,3 +8,7 @@ include:
 - OWSAP ZAP (detection des vulnerabilites applicatives avant mise en production)
 - cosign (signature et verification systematiques des images)
 - Trivy, Grype, Syft (scan automatique des contenaires
+
+
+argocd login localhost:8080 --username admin --password k5vq-X1fCSuFQutT  --insecure
+kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d; echo

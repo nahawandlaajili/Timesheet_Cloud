@@ -100,27 +100,27 @@ security:
 
 # test APIs
 ## signup
-curl -X POST http://localhost:8080/auth/signup \
+curl -X POST http://localhost:7070/auth/signup \
   -H 'Content-Type: application/json' \
   -d '{"name":"Alice","email":"alice@example.com","password":"pass123"}'
 
 ## login (receives JWT token)
-curl -X POST http://localhost:8080/auth/login \
+curl -X POST http://localhost:7070/auth/login \
   -H 'Content-Type: application/json' \
   -d '{"email":"alice@example.com","password":"pass123"}'
 
 ## call protected endpoint
-TOKEN=$(curl -s -X POST http://localhost:8080/auth/login -H 'Content-Type: application/json' -d '{"email":"alice@example.com","password":"pass123"}' | jq -r .token)
-curl http://localhost:8080/api/user-profiles -H "Authorization: Bearer $TOKEN"
+TOKEN=$(curl -s -X POST http://localhost:7070/auth/login -H 'Content-Type: application/json' -d '{"email":"alice@example.com","password":"pass123"}' | jq -r .token)
+curl http://localhost:7070/api/user-profiles -H "Authorization: Bearer $TOKEN"
 -------------
 Run postgres
 docker run --name userdb -e POSTGRES_USER=user_service -e POSTGRES_PASSWORD=grgjUHI -e POSTGRES_DB=userdb -p 5432:5432 -d postgres:15
 
 -----------------
 ## urls
-http://localhost:8080/api/user-profiles
-http://localhost:8080/actuator/health
-http://localhost:8080/auth/login
+http://localhost:7070/api/user-profiles
+http://localhost:7070/actuator/health
+http://localhost:7070/auth/login
 
 -----------------------------------------------------------------------------------------------------------
 CORS is set up so your React frontend can make requests.

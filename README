@@ -3,7 +3,7 @@ This project contains the following stack
 
 
 # Backend Technology Stack:
-- Java 17
+- Java 21
 - Spring Boot 3.x
 - Spring Web, Spring Data JPA
 - H2 in-memory database (for development)
@@ -17,11 +17,11 @@ This project contains the following stack
 - port 3000/3001
 
 
-user-service → port 8080
+user-service → port 7070
 
-timesheet-service → port 8081
+timesheet-service → port 7071
 
-leave-service → port 8082
+leave-service → port 7072
 
 sickness-service → port 8083
 
@@ -57,4 +57,34 @@ sickness-service → port 8083
 
 # Nexus 
 - port 8081
-http://localhost:8081 
+http://localhost:8081
+
+
+
+Component	        Suggested Port	Notes
+user-service	    7070	        already fine
+timesheet-service	7071	        changed from 8080
+leave-service	    7072	        changed from 8082
+sickness-service	7073	        changed from 8083
+frontend (React)	3001	        fine
+Prometheus	        9090	        default port
+Grafana	            3000	        fine
+ArgoCD	            8088	        changed from 8080
+Jenkins	            8082	        changed from 8080
+Nexus	            8081	        changed from 8080
+SonarQube	        9000	        fine
+
+
+
+use an API Gateway (recommended later)
+
+When you have several microservices, you can eventually add a gateway (like Spring Cloud Gateway or NGINX) to forward everything through a single port:
+
+Frontend → Gateway (port 8080)
+         ├── /users → user-service:7070
+         ├── /timesheets → timesheet-service:7071
+         ├── /leave → leave-service:7072
+         └── /sickness → sickness-service:7073
+
+
+That way your frontend only talks to one port.

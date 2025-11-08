@@ -11,10 +11,13 @@ This project is a microservices-based application designed to manage user profil
 ✅ Each microservice has its own pom.xml.
 ✅ mvn clean package → produces an executable JAR: Each service can be packaged and deployed separately.
 ✅ Dockerfile → wraps that JAR into a portable container image.
-✅ You can run it with docker run and access it via localhost:8081.
+✅ You can run it with docker run and access it via localhost:7071.
 
 3. Leave service
-4. Vacation service
+- manage requesting time off.
+- Get Admin Approval.
+
+4. Sickness service
 
 
 ----------------------------------------------------------------------------------------------------
@@ -55,7 +58,7 @@ This project is a microservices-based application designed to manage user profil
 ## 2.timesheet-service microservice
 It will include:
 
-Java 17 + Spring Boot
+Java 21 + Spring Boot
 
 Postgres DB integration
 
@@ -106,7 +109,26 @@ java -jar target/user-service.jar – Run the application.
 By default, the JAR will be located at:
 
 user-service/target/user-service-1.0.0.jar
+------------------------------------------------------------------------------------------------------------------
 
+## maven commands
+# Build with all checks
+mvn clean verify
+
+# Run security scan only
+mvn dependency-check:check
+
+# Generate test coverage report
+mvn jacoco:report
+
+# Deploy to Nexus
+mvn deploy -DaltDeploymentRepository=nexus-releases::default::http://localhost:8081/repository/maven-releases/
+
+# Build without tests
+mvn clean package -DskipTests
+
+# Run with CI profile
+mvn clean verify -Pci
 # to build and push docker image with the latest changes, you can use the following commands:
 docker login
 docker build -t nahawandl/timesheet-app:latest .

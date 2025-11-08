@@ -58,6 +58,27 @@ To restart mysql@8.0 after an upgrade:
 Or, if you don't want/need a background service you can just run:
   /opt/homebrew/opt/mysql@8.0/bin/mysqld_safe --datadir\=/opt/homebrew/var/mysql -->
 
+# Nexus (via docker)
+ Create directory for Nexus data
+- mkdir -p ~/nexus-data && chmod 777 ~/nexus-data
+- docker pull sonatype/nexus3
+- docker run -d -p 8081:8081 --name nexus \
+  -v nexus-data:/nexus-data \
+  sonatype/nexus3:latest
+
+# Check logs
+docker logs -f nexus
+
+
+Access Nexus: http://localhost:8081
+Default admin credentials:
+- username: admin
+- password: stored in cat /nexus-data/admin.password
+
+Get Admin password:
+- docker exec -it nexus cat /nexus-data/admin.password
+pwd:saminahawand
+
 # Jenkins
 Install the latest LTS version: brew install jenkins-lts
 Start the Jenkins service: brew services start jenkins-lts
@@ -79,16 +100,8 @@ Access SonarQube: http://localhost:9000
 Sonar-token squ_6198116a5fceda09890da18427b6f345020662fd
 
 
-# Nexus
-https://help.sonatype.com/repomanager3/download
 
-cd ~/Downloads tar -xvzf nexus-.tar.gz cd nexus- cd bin ./nexus start
 
-Access Nexus: http://localhost:8081
-
-Default login: admin — get the password from: bash CopyEdit cat sonatype-work/nexus3/admin.password
-
-KR228Laj75##ceuV8muth0
 Version
 java    |java -v|openjdk 21.0.7 2025-04-15
 -----------------------------------------| 

@@ -55,4 +55,4 @@ spec:
               cpu: "1"
               memory: "1Gi"
 
-#http://localhost:8081/actuator/health
+#http://localhost:7071/actuator/health

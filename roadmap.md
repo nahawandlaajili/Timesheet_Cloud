@@ -20,34 +20,24 @@ Docker Compose - Multi-container applications
 Docker Registry - Self-hosted container registry
 
 # Phase 4: Continuous Integration (CI)
-Jenkins - Self-hosted CI/CD server
-
-GitLab CI/CD - If using GitLab
-
-Drone CI - Lightweight alternative
+- Jenkins - Self-hosted CI/CD server
+- Github Actions
 
 # Phase 5: Testing & Quality
-JUnit/TestNG - Unit testing
-
-JaCoCo - Code coverage
-
-SonarQube - Self-hosted code quality
-
-Selenium - E2E testing
-
-Postman/Newman - API testing
+- JUnit/TestNG - Unit testing
+- JaCoCo - Code coverage
+- SonarQube - Self-hosted code quality
+- Selenium - E2E testing
+- Postman/Newman - API testing
 
 # Phase 6: Configuration Management
-Ansible - Configuration management
-
-Puppet/Chef - Alternatives
+- Ansible - Configuration management
+- Puppet/Chef - Alternatives
 
 # Phase 7: Container Orchestration
-Kubernetes (K8s) - Container orchestration
-
-Minikube/K3s - Local K8s clusters
-
-Helm - K8s package manager
+- Kubernetes (K8s) - Container orchestration
+- K3s - Local K8s clusters
+- Helm - K8s package manager
 
 # Phase 8: Monitoring & Logging
 Prometheus - Metrics collection
@@ -82,7 +72,7 @@ Kong/APISIX - API gateway
 Traefik - Reverse proxy/load balancer
 
 # Phase 12: Database & Storage
-PostgreSQL/MySQL - Relational databases
+PostgreSQL - Relational databases
 
 Redis - Caching
 
