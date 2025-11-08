@@ -93,3 +93,8 @@ kubernetes/secret.yaml
 
 .idea/
 .vscode/
+
+DEVOPS:INFRASTRUCTURE_AUDI:md
+PROJECT_AUDIT:REPORT.md
+roadmap.md
+installations.md
